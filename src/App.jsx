@@ -1,3 +1,9 @@
+import Dashboard from "./pages/Dashboard";
+
 export default function App() {
-  return <div className="bg-red-300">Testing</div>;
+  return (
+    <div>
+      <Dashboard />
+    </div>
+  );
 }
