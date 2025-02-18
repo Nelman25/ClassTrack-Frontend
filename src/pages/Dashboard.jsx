@@ -1,8 +1,18 @@
-import { CLASSES } from "../dummyData";
 import Header from "../components/Header";
 import ClassCard from "../components/ClassCard";
+import Loading from "../components/Loading";
+import { useClassStore } from "../stores/classes/classStore";
+import { useEffect } from "react";
 
 export default function Dashboard() {
+  const classes = useClassStore((state) => state.classes);
+  const loading = useClassStore((state) => state.loading);
+  const fetchClasses = useClassStore((state) => state.fetchClasses);
+
+  useEffect(() => {
+    fetchClasses();
+  }, [fetchClasses]);
+
   return (
     <>
       <Header />
@@ -15,11 +25,14 @@ export default function Dashboard() {
             </button>
           </div>
 
-          <div className="flex justify-center mt-6 gap-4 max-w-full max-h-[700px] overflow-y-auto flex-wrap group no-scrollbar">
-            {CLASSES.map((classItem) => (
-              <ClassCard key={classItem.id} classItem={classItem} />
-            ))}
-          </div>
+          {loading && <Loading />}
+          {!loading && (
+            <div className="flex justify-center mt-6 gap-4 max-w-full max-h-[700px] overflow-y-auto flex-wrap group no-scrollbar">
+              {classes.map((classItem) => (
+                <ClassCard key={classItem.id} classItem={classItem} />
+              ))}
+            </div>
+          )}
         </div>
       </main>
     </>
