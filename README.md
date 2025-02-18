@@ -1,6 +1,4 @@
 # ClassTrack Frontend
-
-## Overview
 ClassTrack is a comprehensive class management system designed to streamline common teaching tasks that are traditionally handled manually or through Excel spreadsheets. This repository contains the frontend implementation of ClassTrack, providing professors with an intuitive interface to manage their classes efficiently.
 
 ## Features
