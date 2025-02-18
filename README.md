@@ -23,7 +23,7 @@ ClassTrack is a comprehensive class management system designed to streamline com
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
+git clone https://github.com/HoJoeNiel/ClassTrack-Frontend.git
 ```
 
 2. Navigate to the project directory:
