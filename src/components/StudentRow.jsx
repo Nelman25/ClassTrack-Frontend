@@ -1,16 +1,22 @@
 export default function StudentRow({ student }) {
   const { name, email, studentNumber, course, address } = student;
   return (
-    <tr className="odd:bg-blue-100 even:bg-white hover:bg-amber-50 duration-100 text-lg border-b border-b-slate-300">
-      <td className="py-2 text-start indent-10" colSpan={1}>
+    <tr className="odd:bg-blue-50 even:bg-white hover:bg-amber-50 duration-100 border-b text-center border-b-slate-300">
+      <td className="py-3 text-start indent-5 border-r border-l" colSpan={1}>
         {name}
       </td>
-      <td className="text-blue-600" colSpan={3}>
+      <td className="text-blue-600 border-r border-l" colSpan={2}>
         {email}
       </td>
-      <td colSpan={1}>{studentNumber}</td>
-      <td colSpan={1}>{course}</td>
-      <td colSpan={4}>{address}</td>
+      <td className="border-r border-l" colSpan={1}>
+        {studentNumber}
+      </td>
+      <td className="border-r border-l" colSpan={1}>
+        {course}
+      </td>
+      <td className="border-r border-l" colSpan={2}>
+        {address}
+      </td>
     </tr>
   );
 }
