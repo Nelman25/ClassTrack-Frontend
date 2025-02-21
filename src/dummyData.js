@@ -325,4 +325,109 @@ export const GRADES = [
       },
     ],
   },
+  {
+    name: "Isip, Danfred Martin",
+    studentNumber: "2023-106890",
+    grades: [
+      {
+        type: "Quizzes",
+        scores: [
+          { assessmentId: "quiz1", score: 8 },
+          { assessmentId: "quiz2", score: 9 },
+          { assessmentId: "quiz3", score: 10 },
+        ],
+      },
+      {
+        type: "Laboratory Activities",
+        scores: [
+          { assessmentId: "lab1", score: 80 },
+          { assessmentId: "lab2", score: 93 },
+          { assessmentId: "lab3", score: 95 },
+        ],
+      },
+      {
+        type: "Midterm Exam",
+        scores: [{ assessmentId: "midtermExam", score: 88 }],
+      },
+    ],
+  },
+  {
+    name: "Gonzales, Charles Andrew",
+    studentNumber: "2023-106890",
+    grades: [
+      {
+        type: "Quizzes",
+        scores: [
+          { assessmentId: "quiz1", score: 9 },
+          { assessmentId: "quiz2", score: 10 },
+          { assessmentId: "quiz3", score: 8 },
+        ],
+      },
+      {
+        type: "Laboratory Activities",
+        scores: [
+          { assessmentId: "lab1", score: 87 },
+          { assessmentId: "lab2", score: 98 },
+          { assessmentId: "lab3", score: 90 },
+        ],
+      },
+      {
+        type: "Midterm Exam",
+        scores: [{ assessmentId: "midtermExam", score: 88 }],
+      },
+    ],
+  },
+  {
+    name: "Oliveros, Kenneth",
+    studentNumber: "2023-106890",
+    grades: [
+      {
+        type: "Quizzes",
+        scores: [
+          { assessmentId: "quiz1", score: 9 },
+          { assessmentId: "quiz2", score: 10 },
+          { assessmentId: "quiz3", score: 8 },
+        ],
+      },
+      {
+        type: "Laboratory Activities",
+        scores: [
+          { assessmentId: "lab1", score: 87 },
+          { assessmentId: "lab2", score: 98 },
+          { assessmentId: "lab3", score: 90 },
+        ],
+      },
+      {
+        type: "Midterm Exam",
+        scores: [{ assessmentId: "midtermExam", score: 88 }],
+      },
+    ],
+  },
+  {
+    name: "Naval, Christopher",
+    studentNumber: "2023-106890",
+    grades: [
+      {
+        type: "Quizzes",
+        scores: [
+          { assessmentId: "quiz1", score: 9 },
+          { assessmentId: "quiz2", score: 10 },
+          { assessmentId: "quiz3", score: 8 },
+        ],
+      },
+      {
+        type: "Laboratory Activities",
+        scores: [
+          { assessmentId: "lab1", score: 87 },
+          { assessmentId: "lab2", score: 98 },
+          { assessmentId: "lab3", score: 90 },
+        ],
+      },
+      {
+        type: "Midterm Exam",
+        scores: [{ assessmentId: "midtermExam", score: 88 }],
+      },
+    ],
+  },
+  
 ];
