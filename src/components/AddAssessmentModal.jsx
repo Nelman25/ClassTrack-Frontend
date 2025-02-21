@@ -52,7 +52,7 @@ export default function AddAssessmentModal({ type }) {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
-          className="text-xl text-slate-600 ml-4 bg-slate-100 hover:bg-gray-200 px-3 rounded-lg shadow"
+          className="text-xl text-white ml-4 bg-blue-500/50 hover:bg-blue-600/50 px-3 rounded-lg shadow"
           variant="default"
         >
           +

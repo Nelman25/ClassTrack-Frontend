@@ -24,7 +24,7 @@ export default function GradingSheet() {
   return (
     <div className="w-full px-8">
       <h2 className="text-2xl font-medium py-6">College Physics 1 - COM231</h2>
-      <div className="w-full h-full max-h-[790px] max-w-[1600px] border border-mistGray shadow rounded-md">
+      <div className="w-full h-full max-h-[830px] max-w-[1600px] border border-mistGray shadow rounded-md">
         <div className="h-[770px] overflow-x-auto overflow-y-auto no-scrollbar rounded-md">
           {error && <h3>{error}</h3>}
           {loading && <Loading />}
@@ -78,7 +78,7 @@ export default function GradingSheet() {
                     {gradeData.map((student, index) => (
                       <tr
                         key={student.studentNumber}
-                        className={`border-b hover:bg-sky-50 transition-colors ${
+                        className={`border-b ${
                           index % 2 === 0 ? "bg-white" : "bg-gray-50"
                         }`}
                       >

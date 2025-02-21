@@ -59,7 +59,7 @@ export default function AddGradeTypeModal() {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
-          className="bg-sky-300 text-white hover:bg-sky-400"
+          className="bg-blue-600/90 text-white hover:bg-blue-600/95 hover:scale-[102%] transition"
           variant="default"
         >
           Add new grade type
