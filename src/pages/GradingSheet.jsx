@@ -20,19 +20,19 @@ export default function GradingSheet() {
   return (
     <div className="w-full px-8">
       <h2 className="text-2xl font-medium py-6">College Physics 1 - COM231</h2>
-      <div className="w-full h-full max-h-[800px] border border-mistGray shadow rounded-md">
+      <div className="w-full h-full max-h-[800px] max-w-[1600px] border border-mistGray shadow rounded-md">
         <div className="h-[770px] overflow-x-auto overflow-y-auto no-scrollbar rounded-md">
           {error && <h3>{error}</h3>}
           {loading && <Loading />}
           {!loading && (
-            <div>
+            <div className="">
               {/* HEADER PART */}
-              <div className="flex justify-between items-center border-b border-b-mistyGray px-4 py-4 ">
+              <div className="flex justify-between items-center border-b border-b-mistyGray px-4 py-4">
                 <span className="text-lg font-medium ">Class Records</span>
                 <AddGradeTypeModal />
               </div>
               {/* TABLE PART */}
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto no-scrollbar">
                 <table className="w-full">
                   <thead>
                     <tr className="bg-gray-50 border-b">
@@ -56,7 +56,7 @@ export default function GradingSheet() {
                       ))}
                     </tr>
                     <tr className="bg-gray-50 border-b text-sm sticky bottom-0">
-                      <th className="p-4" colSpan={2}></th>
+                      <th className="p-4 min-w-[200px]" colSpan={2}></th>
                       {gradeTypes.map((gradeType) =>
                         gradeType.assessments.map((assessment, index) => (
                           <th
@@ -80,10 +80,10 @@ export default function GradingSheet() {
                           index % 2 === 0 ? "bg-white" : "bg-gray-50"
                         }`}
                       >
-                        <td className="p-4 font-medium text-gray-900">
+                        <td className="p-4 font-medium text-gray-900 min-w-[250px]">
                           {student.name}
                         </td>
-                        <td className="p-4 text-gray-600">
+                        <td className="p-4 text-gray-600 min-w-[180px]">
                           {student.studentNumber}
                         </td>
                         {gradeTypes.map((gradeType) => {
