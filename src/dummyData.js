@@ -327,7 +327,7 @@ export const GRADES = [
   },
   {
     name: "Isip, Danfred Martin",
-    studentNumber: "2023-106890",
+    studentNumber: "2023-105392",
     grades: [
       {
         type: "Quizzes",
@@ -353,7 +353,7 @@ export const GRADES = [
   },
   {
     name: "Gonzales, Charles Andrew",
-    studentNumber: "2023-106890",
+    studentNumber: "2023-110483",
     grades: [
       {
         type: "Quizzes",
@@ -379,7 +379,7 @@ export const GRADES = [
   },
   {
     name: "Oliveros, Kenneth",
-    studentNumber: "2023-106890",
+    studentNumber: "2023-119435",
     grades: [
       {
         type: "Quizzes",
@@ -405,7 +405,7 @@ export const GRADES = [
   },
   {
     name: "Naval, Christopher",
-    studentNumber: "2023-106890",
+    studentNumber: "2023-103821",
     grades: [
       {
         type: "Quizzes",
@@ -429,5 +429,4 @@ export const GRADES = [
       },
     ],
   },
-  
 ];
