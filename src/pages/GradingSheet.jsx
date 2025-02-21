@@ -2,15 +2,19 @@ import { useEffect } from "react";
 import { useGradesStore } from "../stores/grades/gradesStore";
 import Loading from "../components/Loading";
 import AddGradeTypeModal from "@/components/AddGradeTypeModal";
+import { BG_COLORS, TEXT_COLORS } from "@/constants";
 
 export default function GradingSheet() {
   const gradeData = useGradesStore((state) => state.grades);
   const gradeTypes = useGradesStore((state) => state.gradeTypes);
   const fetchGradeTypes = useGradesStore((state) => state.fetchGradeTypes);
   const fetchGrades = useGradesStore((state) => state.fetchGrades);
-  // const addNewGradeType = useGradesStore((state) => state.addNewGradeType);
   const loading = useGradesStore((state) => state.loading);
   const error = useGradesStore((state) => state.error);
+
+  const arrayOfGradeTypesString = gradeTypes.map((gradeType) => gradeType.type);
+
+  console.log(arrayOfGradeTypesString);
 
   useEffect(() => {
     fetchGradeTypes();
@@ -61,7 +65,7 @@ export default function GradingSheet() {
                         gradeType.assessments.map((assessment, index) => (
                           <th
                             key={`${gradeType.type}-${index}`}
-                            className="text-center p-4"
+                            className="text-center p-4 min-w-[200px]"
                           >
                             {assessment.name}
                             <div className="text-xs text-gray-500">
@@ -97,17 +101,13 @@ export default function GradingSheet() {
                                 (s) => s.assessmentId === assessment.id
                               )?.score ?? "";
                             const bgColor =
-                              gradeType.type === "Midterm Exam"
-                                ? "bg-purple-50"
-                                : gradeType.type === "Quizzes"
-                                ? "bg-green-50"
-                                : "bg-blue-50";
+                              BG_COLORS[
+                                arrayOfGradeTypesString.indexOf(gradeType.type)
+                              ];
                             const textColor =
-                              gradeType.type === "Midterm Exam"
-                                ? "text-purple-700"
-                                : gradeType.type === "Quizzes"
-                                ? "text-green-700"
-                                : "text-blue-700";
+                              TEXT_COLORS[
+                                arrayOfGradeTypesString.indexOf(gradeType.type)
+                              ];
 
                             return (
                               <td
@@ -120,7 +120,7 @@ export default function GradingSheet() {
                                   <input
                                     type="text"
                                     value={score}
-                                    className={`w-full text-center py-1 px-2 bg-transparent ${textColor} outline-none focus:ring-2 focus:ring-blue-500 rounded`}
+                                    className={`w-full text-center font-medium py-1 px-2 bg-transparent ${textColor} outline-none focus:ring-2 focus:ring-blue-500 rounded`}
                                     maxLength={5}
                                   />
                                 </div>
