@@ -4,7 +4,7 @@ import Loading from "../components/Loading";
 import AddGradeTypeModal from "@/components/AddGradeTypeModal";
 
 export default function GradingSheet() {
-  const gradesData = useGradesStore((state) => state.grades);
+  const gradeData = useGradesStore((state) => state.grades);
   const gradeTypes = useGradesStore((state) => state.gradeTypes);
   const fetchGradeTypes = useGradesStore((state) => state.fetchGradeTypes);
   const fetchGrades = useGradesStore((state) => state.fetchGrades);
@@ -17,76 +17,125 @@ export default function GradingSheet() {
     fetchGrades();
   }, [fetchGradeTypes, fetchGrades]);
 
-  console.log(gradesData);
-
   return (
-    <div className="w-full h-full min-h-[800px] mt-8 mx-8 py-2 px-4 border border-mistGray shadow rounded-md">
-      <div className="flex justify-between items-center my-2">
-        <h2 className="text-xl font-medium">College Physics 1 - COM231</h2>
-        <button className="bg-green-500 text-white text-lg px-4 py-2 rounded-md shadow-md duration-200 hover:scale-105 active:scale-100 hover:bg-green-600">
-          Save changes
-        </button>
-      </div>
-
-      <div className="h-[700px] overflow-x-auto overflow-y-auto no-scrollbar rounded-md">
-        {error && <h3>{error}</h3>}
-        {loading && <Loading />}
-        {!loading && (
-          <>
-            <div className="w-full">
-              <div className="sticky top-0">
-                <div className="text-white text-xl flex items-center">
-                  {/* Start ng header part */}
-                  <div className="py-3 text-center bg-regalBlue grow self-stretch flex-1 border border-black">
-                    <p>Student name</p>
-                  </div>
-                  {gradeTypes.map((field) => (
-                    <div
-                      key={field}
-                      className="py-3 text-center bg-regalBlue grow self-stretch flex-1 border border-black"
-                    >
-                      <p>{field.type}</p>
-                    </div>
-                  ))}
-                  {/* Plus button */}
-                </div>
-                {/* Dito na yung ididisplay yung mga data */}
-                <div className="">
-                  {gradesData.map((item) => {
-                    const { studentNumber, name, grades } = item;
-                    return (
-                      <div className="flex items-center" key={studentNumber}>
-                        <div className="py-3 border border-black self-stretch text-center grow flex-1">
-                          <p>{name}</p>
-                        </div>
-                        {gradeTypes.map((gradeType) => {
-                          const gradeForType = grades.find(
-                            (g) => g.type === gradeType.type
-                          );
-                          return (
-                            <div className="grow flex-1 flex" key={gradeType.type}>
-                              {gradeForType?.scores.map((score, idx) => (
-                                <div
-                                  className="border border-black p-4 flex-1 text-center"
-                                  key={idx}
-                                >
-                                  {score.score}
-                                </div>
-                              ))}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-              <div>
+    <div className="w-full px-8">
+      <h2 className="text-2xl font-medium py-6">College Physics 1 - COM231</h2>
+      <div className="w-full h-full max-h-[800px] border border-mistGray shadow rounded-md">
+        <div className="h-[770px] overflow-x-auto overflow-y-auto no-scrollbar rounded-md">
+          {error && <h3>{error}</h3>}
+          {loading && <Loading />}
+          {!loading && (
+            <div>
+              {/* HEADER PART */}
+              <div className="flex justify-between items-center border-b border-b-mistyGray px-4 py-4 ">
+                <span className="text-lg font-medium ">Class Records</span>
                 <AddGradeTypeModal />
               </div>
+              {/* TABLE PART */}
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="bg-gray-50 border-b">
+                      <th className="text-left font-semibold text-gray-900 p-4">
+                        Student Name
+                      </th>
+                      <th className="text-left font-semibold text-gray-900 p-4">
+                        Student Number
+                      </th>
+                      {gradeTypes.map((gradeType) => (
+                        <th
+                          key={gradeType.type}
+                          className="text-center font-semibold text-gray-900 p-4"
+                          colSpan={gradeType.assessments.length}
+                        >
+                          {gradeType.type}
+                          <button className="text-xl text-slate-600 ml-4 bg-slate-100 hover:bg-gray-200 px-2 rounded-lg shadow">
+                            +
+                          </button>
+                        </th>
+                      ))}
+                    </tr>
+                    <tr className="bg-gray-50 border-b text-sm sticky bottom-0">
+                      <th className="p-4" colSpan={2}></th>
+                      {gradeTypes.map((gradeType) =>
+                        gradeType.assessments.map((assessment, index) => (
+                          <th
+                            key={`${gradeType.type}-${index}`}
+                            className="text-center p-4"
+                          >
+                            {assessment.name}
+                            <div className="text-xs text-gray-500">
+                              Max: {assessment.maxPoints}
+                            </div>
+                          </th>
+                        ))
+                      )}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {gradeData.map((student, index) => (
+                      <tr
+                        key={student.studentNumber}
+                        className={`border-b hover:bg-yellow-50 transition-colors ${
+                          index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                        }`}
+                      >
+                        <td className="p-4 font-medium text-gray-900">
+                          {student.name}
+                        </td>
+                        <td className="p-4 text-gray-600">
+                          {student.studentNumber}
+                        </td>
+                        {gradeTypes.map((gradeType) => {
+                          const studentGradeType = student.grades.find(
+                            (g) => g.type === gradeType.type
+                          );
+
+                          return gradeType.assessments.map((assessment) => {
+                            const score =
+                              studentGradeType?.scores.find(
+                                (s) => s.assessmentId === assessment.id
+                              )?.score ?? "";
+                            const bgColor =
+                              gradeType.type === "Midterm Exam"
+                                ? "bg-purple-50"
+                                : gradeType.type === "Quizzes"
+                                ? "bg-green-50"
+                                : "bg-blue-50";
+                            const textColor =
+                              gradeType.type === "Midterm Exam"
+                                ? "text-purple-700"
+                                : gradeType.type === "Quizzes"
+                                ? "text-green-700"
+                                : "text-blue-700";
+
+                            return (
+                              <td
+                                key={`${student.studentNumber}-${assessment.id}`}
+                                className="text-center p-4  "
+                              >
+                                <div
+                                  className={`inline-block min-w-[4rem] ${bgColor} rounded`}
+                                >
+                                  <input
+                                    type="text"
+                                    value={score}
+                                    className={`w-full text-center py-1 px-2 bg-transparent ${textColor} outline-none focus:ring-2 focus:ring-blue-500 rounded`}
+                                    maxLength={5}
+                                  />
+                                </div>
+                              </td>
+                            );
+                          });
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
