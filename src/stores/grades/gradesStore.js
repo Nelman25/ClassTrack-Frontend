@@ -49,4 +49,25 @@ export const useGradesStore = create((set) => ({
         },
       ],
     })),
+
+  addNewAssessment: (type, assessmentName, maxScore) =>
+    set((state) => {
+      return {
+        gradeTypes: state.gradeTypes.map((t) =>
+          t.type === type
+            ? {
+                ...t,
+                assessments: [
+                  ...t.assessments,
+                  {
+                    id: assessmentName.split(" ").join("").toLowerCase(),
+                    name: assessmentName,
+                    maxPoints: maxScore,
+                  },
+                ],
+              }
+            : t
+        ),
+      };
+    }),
 }));

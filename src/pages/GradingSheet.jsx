@@ -3,6 +3,7 @@ import { useGradesStore } from "../stores/grades/gradesStore";
 import Loading from "../components/Loading";
 import AddGradeTypeModal from "@/components/AddGradeTypeModal";
 import { BG_COLORS, TEXT_COLORS } from "@/constants";
+import AddAssessmentModal from "@/components/AddAssessmentModal";
 
 export default function GradingSheet() {
   const gradeData = useGradesStore((state) => state.grades);
@@ -11,10 +12,9 @@ export default function GradingSheet() {
   const fetchGrades = useGradesStore((state) => state.fetchGrades);
   const loading = useGradesStore((state) => state.loading);
   const error = useGradesStore((state) => state.error);
-
   const arrayOfGradeTypesString = gradeTypes.map((gradeType) => gradeType.type);
 
-  console.log(arrayOfGradeTypesString);
+  console.log(gradeTypes);
 
   useEffect(() => {
     fetchGradeTypes();
@@ -24,7 +24,7 @@ export default function GradingSheet() {
   return (
     <div className="w-full px-8">
       <h2 className="text-2xl font-medium py-6">College Physics 1 - COM231</h2>
-      <div className="w-full h-full max-h-[800px] max-w-[1600px] border border-mistGray shadow rounded-md">
+      <div className="w-full h-full max-h-[790px] max-w-[1600px] border border-mistGray shadow rounded-md">
         <div className="h-[770px] overflow-x-auto overflow-y-auto no-scrollbar rounded-md">
           {error && <h3>{error}</h3>}
           {loading && <Loading />}
@@ -53,9 +53,7 @@ export default function GradingSheet() {
                           colSpan={gradeType.assessments.length}
                         >
                           {gradeType.type}
-                          <button className="text-xl text-slate-600 ml-4 bg-slate-100 hover:bg-gray-200 px-2 rounded-lg shadow">
-                            +
-                          </button>
+                          <AddAssessmentModal type={gradeType.type} />
                         </th>
                       ))}
                     </tr>
@@ -68,7 +66,7 @@ export default function GradingSheet() {
                             className="text-center p-4 min-w-[200px]"
                           >
                             {assessment.name}
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs font-normal text-gray-500">
                               Max: {assessment.maxPoints}
                             </div>
                           </th>
@@ -80,7 +78,7 @@ export default function GradingSheet() {
                     {gradeData.map((student, index) => (
                       <tr
                         key={student.studentNumber}
-                        className={`border-b hover:bg-yellow-50 transition-colors ${
+                        className={`border-b hover:bg-sky-50 transition-colors ${
                           index % 2 === 0 ? "bg-white" : "bg-gray-50"
                         }`}
                       >
