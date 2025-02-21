@@ -31,13 +31,13 @@ export default function Masterlist() {
             <table className="w-full">
               <thead className="bg-regalBlue sticky top-0">
                 <tr className="text-white text-xl">
-                  <th className="py-3" colSpan={1}>
+                  <th className="py-3 " colSpan={1}>
                     Student name
                   </th>
-                  <th colSpan={3}>Student email</th>
-                  <th colSpan={1}>Student number</th>
-                  <th colSpan={1}>Course</th>
-                  <th colSpan={4}>Address</th>
+                  <th className="border" colSpan={2}>Student email</th>
+                  <th className="border" colSpan={1}>Student number</th>
+                  <th className="border" colSpan={1}>Course</th>
+                  <th className="border" colSpan={2}>Address</th>
                 </tr>
               </thead>
               <tbody className="text-center font-light">

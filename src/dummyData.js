@@ -195,3 +195,238 @@ export const STUDENTS = [
     course: "BSIT-MAA",
   },
 ];
+
+// export const GRADE_TYPES = ["Quizzes", "Laboratory Activities", "Midterm Exam"];
+export const GRADE_TYPES = [
+  {
+    type: "Quizzes",
+    assessments: [
+      { id: "quiz1", name: "Quiz 1", maxPoints: 10 },
+      { id: "quiz2", name: "Quiz 2", maxPoints: 10 },
+      { id: "quiz3", name: "Quiz 3", maxPoints: 10 },
+    ],
+  },
+  {
+    type: "Laboratory Activities",
+    assessments: [
+      { id: "lab1", name: "Laboratory Activity 1", maxPoints: 100 },
+      { id: "lab2", name: "Laboratory Activity 2", maxPoints: 100 },
+      { id: "lab3", name: "Laboratory Activity 3", maxPoints: 100 },
+    ],
+  },
+  {
+    type: "Midterm Exam",
+    assessments: [{ id: "midtermExam", name: "Midterm Exam", maxPoints: 100 }],
+  },
+];
+
+export const GRADES = [
+  {
+    name: "Villaver, Jonel",
+    studentNumber: "2023-103585",
+    grades: [
+      {
+        type: "Quizzes",
+        scores: [
+          { assessmentId: "quiz1", score: 10 },
+          { assessmentId: "quiz2", score: 8 },
+          { assessmentId: "quiz3", score: 9 },
+        ],
+      },
+      {
+        type: "Laboratory Activities",
+        scores: [
+          { assessmentId: "lab1", score: 100 },
+          { assessmentId: "lab2", score: 89 },
+          { assessmentId: "lab3", score: 94 },
+        ],
+      },
+      {
+        type: "Midterm Exam",
+        scores: [{ assessmentId: "midtermExam", score: 89 }],
+      },
+    ],
+  },
+  {
+    name: "Silagan, Jose Neil Jr.",
+    studentNumber: "2023-104678",
+    grades: [
+      {
+        type: "Quizzes",
+        scores: [
+          { assessmentId: "quiz1", score: 7 },
+          { assessmentId: "quiz2", score: 9 },
+          { assessmentId: "quiz3", score: 6 },
+        ],
+      },
+      {
+        type: "Laboratory Activities",
+        scores: [
+          { assessmentId: "lab1", score: 92 },
+          { assessmentId: "lab2", score: 78 },
+          { assessmentId: "lab3", score: 87 },
+        ],
+      },
+      {
+        type: "Midterm Exam",
+        scores: [{ assessmentId: "midtermExam", score: 85 }],
+      },
+    ],
+  },
+  {
+    name: "Santuyo, Edrich Darren",
+    studentNumber: "2023-105789",
+    grades: [
+      {
+        type: "Quizzes",
+        scores: [
+          { assessmentId: "quiz1", score: 8 },
+          { assessmentId: "quiz2", score: 7 },
+          { assessmentId: "quiz3", score: 9 },
+        ],
+      },
+      {
+        type: "Laboratory Activities",
+        scores: [
+          { assessmentId: "lab1", score: 100 },
+          { assessmentId: "lab2", score: 98 },
+          { assessmentId: "lab3", score: 86 },
+        ],
+      },
+      {
+        type: "Midterm Exam",
+        scores: [{ assessmentId: "midtermExam", score: 92 }],
+      },
+    ],
+  },
+  {
+    name: "Sanisit, Luisryan",
+    studentNumber: "2023-106890",
+    grades: [
+      {
+        type: "Quizzes",
+        scores: [
+          { assessmentId: "quiz1", score: 9 },
+          { assessmentId: "quiz2", score: 10 },
+          { assessmentId: "quiz3", score: 8 },
+        ],
+      },
+      {
+        type: "Laboratory Activities",
+        scores: [
+          { assessmentId: "lab1", score: 87 },
+          { assessmentId: "lab2", score: 98 },
+          { assessmentId: "lab3", score: 90 },
+        ],
+      },
+      {
+        type: "Midterm Exam",
+        scores: [{ assessmentId: "midtermExam", score: 88 }],
+      },
+    ],
+  },
+  {
+    name: "Isip, Danfred Martin",
+    studentNumber: "2023-105392",
+    grades: [
+      {
+        type: "Quizzes",
+        scores: [
+          { assessmentId: "quiz1", score: 8 },
+          { assessmentId: "quiz2", score: 9 },
+          { assessmentId: "quiz3", score: 10 },
+        ],
+      },
+      {
+        type: "Laboratory Activities",
+        scores: [
+          { assessmentId: "lab1", score: 80 },
+          { assessmentId: "lab2", score: 93 },
+          { assessmentId: "lab3", score: 95 },
+        ],
+      },
+      {
+        type: "Midterm Exam",
+        scores: [{ assessmentId: "midtermExam", score: 88 }],
+      },
+    ],
+  },
+  {
+    name: "Gonzales, Charles Andrew",
+    studentNumber: "2023-110483",
+    grades: [
+      {
+        type: "Quizzes",
+        scores: [
+          { assessmentId: "quiz1", score: 9 },
+          { assessmentId: "quiz2", score: 10 },
+          { assessmentId: "quiz3", score: 8 },
+        ],
+      },
+      {
+        type: "Laboratory Activities",
+        scores: [
+          { assessmentId: "lab1", score: 87 },
+          { assessmentId: "lab2", score: 98 },
+          { assessmentId: "lab3", score: 90 },
+        ],
+      },
+      {
+        type: "Midterm Exam",
+        scores: [{ assessmentId: "midtermExam", score: 88 }],
+      },
+    ],
+  },
+  {
+    name: "Oliveros, Kenneth",
+    studentNumber: "2023-119435",
+    grades: [
+      {
+        type: "Quizzes",
+        scores: [
+          { assessmentId: "quiz1", score: 9 },
+          { assessmentId: "quiz2", score: 10 },
+          { assessmentId: "quiz3", score: 8 },
+        ],
+      },
+      {
+        type: "Laboratory Activities",
+        scores: [
+          { assessmentId: "lab1", score: 87 },
+          { assessmentId: "lab2", score: 98 },
+          { assessmentId: "lab3", score: 90 },
+        ],
+      },
+      {
+        type: "Midterm Exam",
+        scores: [{ assessmentId: "midtermExam", score: 88 }],
+      },
+    ],
+  },
+  {
+    name: "Naval, Christopher",
+    studentNumber: "2023-103821",
+    grades: [
+      {
+        type: "Quizzes",
+        scores: [
+          { assessmentId: "quiz1", score: 9 },
+          { assessmentId: "quiz2", score: 10 },
+          { assessmentId: "quiz3", score: 8 },
+        ],
+      },
+      {
+        type: "Laboratory Activities",
+        scores: [
+          { assessmentId: "lab1", score: 87 },
+          { assessmentId: "lab2", score: 98 },
+          { assessmentId: "lab3", score: 90 },
+        ],
+      },
+      {
+        type: "Midterm Exam",
+        scores: [{ assessmentId: "midtermExam", score: 88 }],
+      },
+    ],
+  },
+];
