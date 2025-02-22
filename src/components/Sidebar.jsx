@@ -20,7 +20,7 @@ export default function Sidebar() {
   }, [location]);
 
   return (
-    <aside className="w-full h-screen max-w-[16rem] flex flex-col justify-between py-6 px-4 bg-royalIndigo/95 sidebar border-r-8 border-r-yellow-500/90">
+    <aside className="w-full h-screen max-w-[16rem] flex flex-col justify-between py-6 px-4 bg-royalIndigo/95 sidebar">
       <div className="flex flex-col">
         <div className="flex items-center mb-12">
           <div className="p-1 bg-yellow-500/70 mr-3 rounded-xl shadow">
