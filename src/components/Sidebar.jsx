@@ -20,43 +20,69 @@ export default function Sidebar() {
   }, [location]);
 
   return (
-    <aside className="w-full max-w-[15rem] h-[50rem] pt-24 sidebar relative">
-      <nav>
-        <ul>
-          <Link to="/dashboard">
-            <li className="flex items-center gap-2 text-slate-700 text-lg w-full px-4 py-4 group hover:bg-indigoBlue hover:text-white">
-              <MdSpaceDashboard className="group-hover:text-white text-royalIndigo" />
-              Dashboard
-            </li>
-          </Link>
-          <SidebarTab path="masterlist" active={active}>
-            <SiGoogleclassroom
-              className={`text-royalIndigo group-hover:text-white ${
-                active === "masterlist" && "text-white "
-              }`}
-            />{" "}
-            Masterlist
-          </SidebarTab>
-          <SidebarTab path="grading-sheet" active={active}>
-            <TbEdit
-              className={`text-royalIndigo group-hover:text-white ${
-                active === "grading-sheet" && "text-white"
-              }`}
+    <aside className="w-full h-screen max-w-[16rem] flex flex-col justify-between py-6 px-4 bg-royalIndigo/95 sidebar">
+      <div className="flex flex-col">
+        <div className="flex items-center mb-12">
+          <div className="p-1 bg-yellow-500/70 mr-3 rounded-xl shadow">
+            <img
+              src="/src/assets/NU_shield.png"
+              alt="NU logo"
+              className="size-12"
             />
-            Grading sheet
-          </SidebarTab>
-          <SidebarTab path="attendance-sheet" active={active}>
-            <FiEdit3
-              className={`text-royalIndigo group-hover:text-white ${
-                active === "attendance-sheet" && "text-white"
-              }`}
-            />
-            Attendance sheet
-          </SidebarTab>
-        </ul>
-      </nav>
-      <button className="flex w-full items-center justify-center gap-2 font-medium absolute bottom-0 text-lg text-slate-800  group hover:text-blue-400">
-        <CiLogout className="text-xl group-hover:text-blue-400" /> Logout
+          </div>
+          <div>
+            <span className="text-blue-400/90 text-2xl font-bold">Class</span>
+            <span className="text-yellow-400/90 text-2xl font-bold">Track</span>
+          </div>
+        </div>
+        <nav>
+          <ul>
+            <Link to="/dashboard">
+              <li className="flex items-center gap-2 text-white text-base w-full px-4 py-2 group hover:bg-indigoBlue hover:text-white rounded-xl">
+                <div className="p-3 bg-white/20 rounded-xl">
+                  <MdSpaceDashboard className="group-hover:text-white text-white" />
+                </div>
+                <span>Dashboard</span>
+              </li>
+            </Link>
+            <SidebarTab path="masterlist" active={active}>
+              <div className="p-3 bg-white/20 rounded-xl">
+                <SiGoogleclassroom
+                  className={`text-white group-hover:text-white ${
+                    active === "masterlist" && "text-white "
+                  }`}
+                />
+              </div>
+              <span>Masterlist</span>
+            </SidebarTab>
+            <SidebarTab path="grading-sheet" active={active}>
+              <div className="p-3 bg-white/20 rounded-xl">
+                <TbEdit
+                  className={`text-white group-hover:text-white ${
+                    active === "grading-sheet" && "text-white"
+                  }`}
+                />
+              </div>
+
+              <span>Grading sheet</span>
+            </SidebarTab>
+            <SidebarTab path="attendance-sheet" active={active}>
+              <div className="p-3 bg-white/20 rounded-xl">
+                <FiEdit3
+                  className={`text-white group-hover:text-white ${
+                    active === "attendance-sheet" && "text-white"
+                  }`}
+                />
+              </div>
+
+              <span>Attendance sheet</span>
+            </SidebarTab>
+          </ul>
+        </nav>
+      </div>
+      <button className="flex w-full pl-16 items-center gap-2 text-white text-lg group hover:text-yellow-400">
+        <CiLogout className="text-2xl group-hover:text-yellow-400" />
+        <span>Logout</span>
       </button>
     </aside>
   );

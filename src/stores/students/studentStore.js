@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { STUDENTS } from "../../dummyData";
+import { STUDENTS } from "../../constants/dummyData";
 
 export const useStudentsStore = create((set) => ({
   loading: false,

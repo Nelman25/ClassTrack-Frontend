@@ -1,6 +1,5 @@
 import { create } from "zustand";
-import { CLASSES } from "../../dummyData";
-
+import { CLASSES } from "../../constants/dummyData";
 
 export const useClassStore = create((set) => ({
   loading: false,
