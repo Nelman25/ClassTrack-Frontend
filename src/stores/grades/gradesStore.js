@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { GRADE_TYPES, GRADES } from "../../constants/dummyData";
+import { GRADE_TYPES, GRADES } from "@/constants/dummyData";
 
 export const useGradesStore = create((set) => ({
   loading: false,
