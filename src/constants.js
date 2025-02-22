@@ -18,10 +18,30 @@ export const BG_COLORS = [
   "bg-orange-50",
 ];
 
+export const COLOR_STRIPS = [
+  "bg-purple-300",
+  "bg-green-300",
+  "bg-blue-300",
+  "bg-amber-300",
+  "bg-lime-300",
+  "bg-emerald-300",
+  "bg-teal-300",
+  "bg-yellow-300",
+  "bg-cyan-300",
+  "bg-sky-300",
+  "bg-indigo-300",
+  "bg-violet-300",
+  "bg-fuchsia-300",
+  "bg-pink-300",
+  "bg-rose-300",
+  "bg-red-300",
+  "bg-orange-300",
+];
+
 export const TEXT_COLORS = [
   "text-purple-700",
   "text-green-700",
-  "text-blue-700",  
+  "text-blue-700",
   "text-amber-700",
   "text-lime-700",
   "text-emerald-700",
