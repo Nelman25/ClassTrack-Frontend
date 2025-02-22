@@ -1,7 +1,7 @@
 import { BsPeople } from "react-icons/bs";
 import { CiClock2 } from "react-icons/ci";
 
-import { COLOR_STRIPS } from "@/constants";
+import { COLOR_STRIPS } from "@/constants/constants";
 
 export default function ClassCard({ classItem, index }) {
   const { subject, section, classSize, schedule } = classItem;

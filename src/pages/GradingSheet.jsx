@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useGradesStore } from "../stores/grades/gradesStore";
 import Loading from "../components/Loading";
 import AddGradeTypeModal from "@/components/AddGradeTypeModal";
-import { BG_COLORS, TEXT_COLORS } from "@/constants";
+import { BG_COLORS, TEXT_COLORS } from "@/constants/constants";
 import AddAssessmentModal from "@/components/AddAssessmentModal";
 
 export default function GradingSheet() {
