@@ -3,6 +3,7 @@ import { ATTENDANCE_DATES, ATTENDANCE_RECORDS } from "@/constants/dummyData";
 
 export const useAttendanceStore = create((set) => ({
   loading: false,
+  error: "",
   dates: [],
   records: [],
 
