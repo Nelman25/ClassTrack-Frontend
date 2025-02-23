@@ -2,13 +2,7 @@ import { useAttendanceStore } from "@/stores/attendances/attendanceStore";
 import { useEffect } from "react";
 import Loading from "@/components/Loading";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import StudentAttendanceRow from "@/components/StudentAttendanceRow";
 
 export default function AttendanceSheet() {
   const dates = useAttendanceStore((state) => state.dates);
@@ -70,48 +64,14 @@ export default function AttendanceSheet() {
                 </thead>
 
                 <tbody className="">
-                  {records.map((record, index) => {
-                    return (
-                      <tr
-                        className={`border-b ${
-                          index % 2 === 0 ? "bg-white" : "bg-gray-50"
-                        }`}
-                        key={record.studentNumber}
-                      >
-                        <td className="min-w-[200px] px-4 text-start">
-                          {record.name}
-                        </td>
-                        {dates.map(({ date_id }) => {
-                          const r = record.records.find(
-                            (i) => i.date_id === date_id
-                          );
-                          return (
-                            <td
-                              className="min-w-[150px] px-4 py-3"
-                              key={date_id}
-                            >
-                              <Select value={r.record_status} >
-                                <SelectTrigger className="bg-blue-100">
-                                  <SelectValue placeholder="hello" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="present">
-                                    Present
-                                  </SelectItem>
-                                  <SelectItem value="absent">Absent</SelectItem>
-                                  <SelectItem value="late">Late</SelectItem>
-                                  <SelectItem value="excused">
-                                    Excused
-                                  </SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </td>
-                          );
-                        })}
-                        <td></td>
-                      </tr>
-                    );
-                  })}
+                  {records.map((record, index) => (
+                    <StudentAttendanceRow
+                      key={record.studentNumber}
+                      record={record}
+                      dates={dates}
+                      index={index}
+                    />
+                  ))}
                 </tbody>
               </table>
             </div>

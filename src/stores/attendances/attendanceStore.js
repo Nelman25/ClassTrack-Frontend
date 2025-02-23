@@ -23,4 +23,23 @@ export const useAttendanceStore = create((set) => ({
       });
     }
   },
+
+  addNewDate: () => {},
+
+  changeRecordStatus: (studentNumber, date_id, value) =>
+    set((state) => ({
+      records: state.records.map((student) => {
+        if (student.studentNumber === studentNumber) {
+          return {
+            ...student,
+            records: student.records.map((r) => {
+              if (r.date_id !== date_id) return r;
+              return { ...r, record_status: value };
+            }),
+          };
+        }
+
+        return student;
+      }),
+    })),
 }));
