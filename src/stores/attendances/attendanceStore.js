@@ -24,7 +24,24 @@ export const useAttendanceStore = create((set) => ({
     }
   },
 
-  addNewDate: () => {},
+  addNewDate: () =>
+    set((state) => ({
+      dates: [
+        ...state.dates,
+        { date_id: state.dates.length + 1, attendance_date: "" },
+      ],
+      records: state.records.map((record) => ({
+        ...record,
+        records: [
+          ...record.records,
+          {
+            record_id: Math.random(),
+            date_id: state.dates.length + 1,
+            record_status: "",
+          },
+        ],
+      })),
+    })),
 
   changeDate: (date_id, newDate) =>
     set((state) => ({

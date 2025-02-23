@@ -448,171 +448,91 @@ export const ATTENDANCE_RECORDS = [
   {
     name: "Villaver, Jonel",
     studentNumber: "2023-103585",
-    records: [
-      {
-        record_id: 1,
-        date_id: 1,
-        record_status: "present",
-      },
-      {
-        record_id: 2,
-        date_id: 2,
-        record_status: "present",
-      },
-      {
-        record_id: 3,
-        date_id: 3,
-        record_status: "present",
-      },
-      {
-        record_id: 4,
-        date_id: 4,
-        record_status: "present",
-      },
-      {
-        record_id: 5,
-        date_id: 5,
-        record_status: "present",
-      },
-      {
-        record_id: 6,
-        date_id: 6,
-        record_status: "present",
-      },
-      {
-        record_id: 7,
-        date_id: 7,
-        record_status: "present",
-      },
-      {
-        record_id: 8,
-        date_id: 8,
-        record_status: "present",
-      },
-      {
-        record_id: 9,
-        date_id: 9,
-        record_status: "present",
-      },
-      {
-        record_id: 10,
-        date_id: 10,
-        record_status: "present",
-      },
-    ],
+    records: Array.from({ length: 10 }, (_, i) => ({
+      record_id: i + 1,
+      date_id: i + 1,
+      record_status: "present",
+    })),
   },
-
   {
-    name: "Smith, Alice",
-    studentNumber: "2022-987654",
-    records: [
-      {
-        record_id: 1,
-        date_id: 1,
-        record_status: "absent",
-      },
-      {
-        record_id: 2,
-        date_id: 2,
-        record_status: "absent",
-      },
-      {
-        record_id: 3,
-        date_id: 3,
-        record_status: "absent",
-      },
-      {
-        record_id: 4,
-        date_id: 4,
-        record_status: "absent",
-      },
-      {
-        record_id: 5,
-        date_id: 5,
-        record_status: "absent",
-      },
-      {
-        record_id: 6,
-        date_id: 6,
-        record_status: "absent",
-      },
-      {
-        record_id: 7,
-        date_id: 7,
-        record_status: "absent",
-      },
-      {
-        record_id: 8,
-        date_id: 8,
-        record_status: "absent",
-      },
-      {
-        record_id: 9,
-        date_id: 9,
-        record_status: "absent",
-      },
-      {
-        record_id: 10,
-        date_id: 10,
-        record_status: "absent",
-      },
-    ],
+    name: "Dela Cruz, Maria",
+    studentNumber: "2023-103586",
+    records: Array.from({ length: 10 }, (_, i) => ({
+      record_id: i + 1,
+      date_id: i + 1,
+      record_status: i % 3 === 0 ? "absent" : "present",
+    })),
   },
-
   {
-    name: "Johnson, Bob",
-    studentNumber: "2023-112233",
-    records: [
-      {
-        record_id: 1,
-        date_id: 1,
-        record_status: "present",
-      },
-      {
-        record_id: 2,
-        date_id: 2,
-        record_status: "present",
-      },
-      {
-        record_id: 3,
-        date_id: 3,
-        record_status: "present",
-      },
-      {
-        record_id: 4,
-        date_id: 4,
-        record_status: "present",
-      },
-      {
-        record_id: 5,
-        date_id: 5,
-        record_status: "present",
-      },
-      {
-        record_id: 6,
-        date_id: 6,
-        record_status: "present",
-      },
-      {
-        record_id: 7,
-        date_id: 7,
-        record_status: "present",
-      },
-      {
-        record_id: 8,
-        date_id: 8,
-        record_status: "present",
-      },
-      {
-        record_id: 9,
-        date_id: 9,
-        record_status: "present",
-      },
-      {
-        record_id: 10,
-        date_id: 10,
-        record_status: "present",
-      },
-    ],
+    name: "Santos, Miguel",
+    studentNumber: "2023-103587",
+    records: Array.from({ length: 10 }, (_, i) => ({
+      record_id: i + 1,
+      date_id: i + 1,
+      record_status: i % 4 === 0 ? "late" : "present",
+    })),
+  },
+  {
+    name: "Reyes, Angela",
+    studentNumber: "2023-103588",
+    records: Array.from({ length: 10 }, (_, i) => ({
+      record_id: i + 1,
+      date_id: i + 1,
+      record_status: i % 2 === 0 ? "present" : "absent",
+    })),
+  },
+  {
+    name: "Garcia, Luis",
+    studentNumber: "2023-103589",
+    records: Array.from({ length: 10 }, (_, i) => ({
+      record_id: i + 1,
+      date_id: i + 1,
+      record_status: i % 5 === 0 ? "late" : "present",
+    })),
+  },
+  {
+    name: "Torres, Jasmine",
+    studentNumber: "2023-103590",
+    records: Array.from({ length: 10 }, (_, i) => ({
+      record_id: i + 1,
+      date_id: i + 1,
+      record_status: i % 2 === 0 ? "present" : "late",
+    })),
+  },
+  {
+    name: "Cruz, Nathan",
+    studentNumber: "2023-103591",
+    records: Array.from({ length: 10 }, (_, i) => ({
+      record_id: i + 1,
+      date_id: i + 1,
+      record_status: i % 3 === 0 ? "late" : "present",
+    })),
+  },
+  {
+    name: "Fernandez, Julia",
+    studentNumber: "2023-103592",
+    records: Array.from({ length: 10 }, (_, i) => ({
+      record_id: i + 1,
+      date_id: i + 1,
+      record_status: i % 4 === 0 ? "absent" : "present",
+    })),
+  },
+  {
+    name: "Bautista, Carlos",
+    studentNumber: "2023-103593",
+    records: Array.from({ length: 10 }, (_, i) => ({
+      record_id: i + 1,
+      date_id: i + 1,
+      record_status: i % 6 === 0 ? "absent" : "present",
+    })),
+  },
+  {
+    name: "Gonzales, Erika",
+    studentNumber: "2023-103594",
+    records: Array.from({ length: 10 }, (_, i) => ({
+      record_id: i + 1,
+      date_id: i + 1,
+      record_status: i % 2 === 0 ? "late" : "present",
+    })),
   },
 ];

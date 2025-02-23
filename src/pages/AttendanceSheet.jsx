@@ -10,6 +10,7 @@ export default function AttendanceSheet() {
   const loading = useAttendanceStore((state) => state.loading);
   const error = useAttendanceStore((state) => state.error);
   const changeDate = useAttendanceStore((state) => state.changeDate);
+  const addNewDate = useAttendanceStore((state) => state.addNewDate);
   const fetchDatesAndRecords = useAttendanceStore(
     (state) => state.fetchDatesAndRecords
   );
@@ -18,7 +19,7 @@ export default function AttendanceSheet() {
     fetchDatesAndRecords();
   }, [fetchDatesAndRecords]);
 
-  console.log(dates);
+  console.log(records);
 
   return (
     <div className="w-full px-8">
@@ -66,7 +67,10 @@ export default function AttendanceSheet() {
                       </th>
                     ))}
                     <th className="min-w-[150px]">
-                      <button className="bg-green-600/80 h-8 px-4 rounded-lg text-white shadow hover:bg-green-500/90 transition">
+                      <button
+                        onClick={addNewDate}
+                        className="bg-green-600/80 h-8 px-4 rounded-lg text-white shadow hover:bg-green-500/90 transition"
+                      >
                         Add date
                       </button>
                     </th>
