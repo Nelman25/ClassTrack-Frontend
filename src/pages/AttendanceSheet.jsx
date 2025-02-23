@@ -9,6 +9,7 @@ export default function AttendanceSheet() {
   const records = useAttendanceStore((state) => state.records);
   const loading = useAttendanceStore((state) => state.loading);
   const error = useAttendanceStore((state) => state.error);
+  const changeDate = useAttendanceStore((state) => state.changeDate);
   const fetchDatesAndRecords = useAttendanceStore(
     (state) => state.fetchDatesAndRecords
   );
@@ -16,6 +17,8 @@ export default function AttendanceSheet() {
   useEffect(() => {
     fetchDatesAndRecords();
   }, [fetchDatesAndRecords]);
+
+  console.log(dates);
 
   return (
     <div className="w-full px-8">
@@ -52,7 +55,14 @@ export default function AttendanceSheet() {
                         className="min-w-[150px] text-md text-start text-gray-700 px-4 py-3"
                         key={date.date_id}
                       >
-                        {date.attendance_date}
+                        <input
+                          className="bg-inherit"
+                          type="date"
+                          value={date.attendance_date}
+                          onChange={(e) =>
+                            changeDate(date.date_id, e.target.value)
+                          }
+                        />
                       </th>
                     ))}
                     <th className="min-w-[150px]">

@@ -26,6 +26,16 @@ export const useAttendanceStore = create((set) => ({
 
   addNewDate: () => {},
 
+  changeDate: (date_id, newDate) =>
+    set((state) => ({
+      dates: state.dates.map((date) => {
+        if (date.date_id === date_id) {
+          return { ...date, attendance_date: newDate };
+        }
+        return date;
+      }),
+    })),
+
   changeRecordStatus: (studentNumber, date_id, value) =>
     set((state) => ({
       records: state.records.map((student) => {
