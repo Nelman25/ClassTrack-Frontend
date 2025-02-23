@@ -3,19 +3,17 @@ import { useEffect } from "react";
 
 import ClassCard from "@/components/ClassCard";
 import Loading from "@/components/Loading";
+import CreateClassModal from "@/components/CreateClassModal";
 
 export default function Dashboard() {
   const classes = useClassStore((state) => state.classes);
   const loading = useClassStore((state) => state.loading);
   const error = useClassStore((state) => state.error);
   const fetchClasses = useClassStore((state) => state.fetchClasses);
-  // const addNewClass = useClassStore((state) => state.addNewClass);
 
   useEffect(() => {
     fetchClasses();
   }, [fetchClasses]);
-
-  // TODO: Create a function for creating a new class.
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -35,10 +33,8 @@ export default function Dashboard() {
 
             <div className="flex items-center gap-4">
               <div className="relative">
-                {/* SEARCH BAR ICON + TEXT INPUT HERE */}
-                <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200">
-                  Create class
-                </button>
+                {/* SEARCH BAR ICON + TEXT INPUT HERE (next time na to hahahha) */}
+                <CreateClassModal />
               </div>
             </div>
           </div>

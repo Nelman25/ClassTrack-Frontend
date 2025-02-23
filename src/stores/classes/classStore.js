@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { CLASSES } from "../../constants/dummyData";
+import { CLASSES } from "@/constants/dummyData";
 
 export const useClassStore = create((set) => ({
   loading: false,
@@ -21,5 +21,7 @@ export const useClassStore = create((set) => ({
   },
 
   addNewClass: (newClass) =>
-    set((state) => ({ classes: [newClass, ...state.classes] })),
+    set((state) => ({
+      classes: [newClass, ...state.classes],
+    })),
 }));
