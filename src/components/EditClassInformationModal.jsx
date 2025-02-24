@@ -13,16 +13,13 @@ import { Label } from "@/components/ui/label";
 import { useClassStore } from "@/stores/classes/classStore";
 import { useState } from "react";
 
-export default function CreateClassModal() {
-  const addNewClass = useClassStore((state) => state.addNewClass);
+export default function EditClassInformationModal({ classItem }) {
+  const editClassInformation = useClassStore(
+    (state) => state.editClassInformation
+  );
   const [error, setError] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [classInfo, setClassInfo] = useState({
-    subject: "",
-    subjectCode: "",
-    section: "",
-    schedule: "",
-  });
+  const [classInfo, setClassInfo] = useState(classItem);
 
   const handleSubjectChange = (e) => {
     setClassInfo((prev) => ({ ...prev, subject: e.target.value }));
@@ -40,7 +37,7 @@ export default function CreateClassModal() {
     setClassInfo((prev) => ({ ...prev, schedule: e.target.value }));
   };
 
-  const handleCreateClass = () => {
+  const handleEditClassInformation = () => {
     if (
       !classInfo.subject ||
       !classInfo.subjectCode ||
@@ -50,39 +47,30 @@ export default function CreateClassModal() {
       setError("Some fields are blank, please try again.");
     }
     const { subject, subjectCode, section, schedule } = classInfo;
-    const newClass = {
+    const editedClass = {
       subject,
       subjectCode,
       section,
       schedule,
-      classSize: 0,
-      id: Math.random(),
+      classSize: classItem.classSize,
+      id: classItem.id,
     };
 
-    addNewClass(newClass);
+    editClassInformation(editedClass);
     setError("");
-    setClassInfo(() => ({
-      subject: "",
-      subjectCode: "",
-      section: "",
-      schedule: "",
-    }));
     setIsOpen(false);
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
-          variant="default"
-        >
-          Create class
-        </Button>
+        <button className="text-sm text-gray-600 hover:text-gray-700">
+          Edit
+        </button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Create new class</DialogTitle>
+          <DialogTitle>Edit Class Information</DialogTitle>
         </DialogHeader>
         <div className="grid gap-2 py-2">
           <div className="grid grid-cols-4 items-center gap-4">
@@ -91,7 +79,7 @@ export default function CreateClassModal() {
             </Label>
             <Input
               id="subject"
-              placeholder="Information Management"
+              placeholder={classItem.subject}
               className="col-span-3"
               value={classInfo.subject}
               onChange={handleSubjectChange}
@@ -103,7 +91,7 @@ export default function CreateClassModal() {
             </Label>
             <Input
               id="subject-code"
-              placeholder="CTINFMGL"
+              placeholder={classItem.subjectCode}
               className="col-span-3"
               value={classInfo.subjectCode}
               onChange={handleSubjectCodeChange}
@@ -115,7 +103,7 @@ export default function CreateClassModal() {
             </Label>
             <Input
               id="section"
-              placeholder="COM231"
+              placeholder={classItem.section}
               className="col-span-3"
               value={classInfo.section}
               onChange={handleSectionChange}
@@ -127,7 +115,7 @@ export default function CreateClassModal() {
             </Label>
             <Input
               id="schedule"
-              placeholder="Tuesday 11:00am - 3:00pm | Friday 11:00AM - 01:40PM"
+              placeholder={classItem.schedule}
               className="col-span-3"
               value={classInfo.schedule}
               onChange={handleScheduleChange}
@@ -140,8 +128,8 @@ export default function CreateClassModal() {
         )}
 
         <DialogFooter>
-          <Button type="submit" onClick={handleCreateClass}>
-            Create class
+          <Button type="submit" onClick={handleEditClassInformation}>
+            Save changes
           </Button>
         </DialogFooter>
       </DialogContent>
