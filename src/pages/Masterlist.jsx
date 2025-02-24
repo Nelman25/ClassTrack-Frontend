@@ -4,6 +4,7 @@ import StudentRow from "../components/StudentRow";
 import Loading from "../components/Loading";
 
 import { useStudentsStore } from "../stores/students/studentStore";
+import { AddStudentModal } from "@/components/AddStudentModal";
 
 export default function Masterlist() {
   const students = useStudentsStore((state) => state.students);
@@ -22,9 +23,7 @@ export default function Masterlist() {
           College Physics 1 - COM231
         </h2>
 
-        <button className="bg-green-600/80 h-10 px-4 rounded-lg text-white shadow hover:bg-green-500/90 transition">
-          Add student
-        </button>
+        <AddStudentModal />
       </div>
 
       <div className="w-full h-full max-h-[830px] max-w-[1600px] border border-mistGray shadow rounded-md">
