@@ -1,5 +1,5 @@
-import { GoPencil } from "react-icons/go";
 import { CiTrash } from "react-icons/ci";
+import { EditStudentInformationModal } from "./EditStudentInformationModal";
 
 export default function StudentRow({ student, index }) {
   const { firstName, lastName, email, studentNumber, course, address } =
@@ -21,7 +21,7 @@ export default function StudentRow({ student, index }) {
       <td className="px-4 text-sm text-gray-600 min-w-[300px]">{address}</td>
       <td className="flex gap-4 px-4 py-3 items-center min-w-[150px]">
         <button>
-          <GoPencil className="text-blue-600 font-medium text-xl hover:text-blue-700" />
+          <EditStudentInformationModal studentItem={student} />
         </button>
         <button>
           <CiTrash className="text-red-600 font-medium text-xl hover:text-red-700" />
