@@ -2,7 +2,8 @@ import { GoPencil } from "react-icons/go";
 import { CiTrash } from "react-icons/ci";
 
 export default function StudentRow({ student, index }) {
-  const { name, email, studentNumber, course, address } = student;
+  const { firstName, lastName, email, studentNumber, course, address } =
+    student;
   return (
     <tr
       className={`border-b hover:bg-gray-50 transition-colors ${
@@ -10,7 +11,7 @@ export default function StudentRow({ student, index }) {
       }`}
     >
       <td className="px-4 py-3 text-sm text-gray-900 font-medium min-w-[150px]">
-        {name}
+        {lastName}, {firstName}
       </td>
       <td className="px-4 text-sm text-blue-600 min-w-[250px]">{email}</td>
       <td className="px-4 text-sm text-gray-600 min-w-[200px]">
