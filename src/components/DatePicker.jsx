@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { addDays, format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
@@ -22,20 +20,17 @@ import {
 import { useAttendanceStore } from "@/stores/attendances/attendanceStore";
 
 export function DatePicker({ date }) {
-  const dates = useAttendanceStore((state) => state.dates);
   const changeDate = useAttendanceStore((state) => state.changeDate);
   const [dateState, setDateState] = useState(date.attendance_date);
 
-  function formatDate(dateString) {
+  const formatDate = (dateString) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
 
     return `${year}-${month}-${day}`;
-  }
-
-  console.log(dates);
+  };
 
   return (
     <Popover>
