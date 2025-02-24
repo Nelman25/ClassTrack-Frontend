@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import Loading from "@/components/Loading";
 
 import StudentAttendanceRow from "@/components/StudentAttendanceRow";
+import { DatePicker } from "@/components/DatePicker";
 
 export default function AttendanceSheet() {
   const dates = useAttendanceStore((state) => state.dates);
   const records = useAttendanceStore((state) => state.records);
   const loading = useAttendanceStore((state) => state.loading);
   const error = useAttendanceStore((state) => state.error);
-  const changeDate = useAttendanceStore((state) => state.changeDate);
   const addNewDate = useAttendanceStore((state) => state.addNewDate);
   const fetchDatesAndRecords = useAttendanceStore(
     (state) => state.fetchDatesAndRecords
@@ -18,8 +18,6 @@ export default function AttendanceSheet() {
   useEffect(() => {
     fetchDatesAndRecords();
   }, [fetchDatesAndRecords]);
-
-  console.log(records);
 
   return (
     <div className="w-full px-8">
@@ -56,14 +54,7 @@ export default function AttendanceSheet() {
                         className="min-w-[150px] text-md text-start text-gray-700 px-4 py-3"
                         key={date.date_id}
                       >
-                        <input
-                          className="bg-inherit"
-                          type="date"
-                          value={date.attendance_date}
-                          onChange={(e) =>
-                            changeDate(date.date_id, e.target.value)
-                          }
-                        />
+                        <DatePicker date={date} />
                       </th>
                     ))}
                     <th className="min-w-[150px]">

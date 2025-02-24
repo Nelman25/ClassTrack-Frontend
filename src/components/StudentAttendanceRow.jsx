@@ -14,7 +14,7 @@ export default function StudentAttendanceRow({ record, dates, index }) {
 
   return (
     <tr
-      className={`border-b hover:bg-blue-50 hover:-translate-y-1 transition-all  ${
+      className={`border-b hover:bg-blue-50 transition-all  ${
         index % 2 === 0 ? "bg-white" : "bg-gray-50"
       }`}
     >
