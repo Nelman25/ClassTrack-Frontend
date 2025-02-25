@@ -86,6 +86,9 @@ export default function StudentGradesRow({ student, index }) {
           );
         });
       })}
+      <td className="p-4 text-center font-medium text-gray-900 min-w-[250px]">
+        100
+      </td>
     </tr>
   );
 }

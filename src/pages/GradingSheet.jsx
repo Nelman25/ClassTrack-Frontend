@@ -55,6 +55,9 @@ export default function GradingSheet() {
                           <AddAssessmentModal type={gradeType.type} />
                         </th>
                       ))}
+                      <th className="text-center font-semibold text-gray-900 p-4">
+                        Final Grade
+                      </th>
                     </tr>
                     <tr className="bg-gray-50 border-b text-sm sticky bottom-0">
                       <th className="p-4 min-w-[200px]" colSpan={2}></th>
@@ -71,6 +74,12 @@ export default function GradingSheet() {
                           </th>
                         ))
                       )}
+                      <th className="text-center p-4 min-w-[200px]">
+                        Final Grade
+                        <div className="text-xs font-normal text-gray-500">
+                          Max: 100
+                        </div>
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
