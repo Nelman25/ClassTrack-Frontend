@@ -11,9 +11,7 @@ export default function StudentGradesRow({ student, index }) {
   const arrayOfGradeTypesString = gradeTypes.map((gradeType) => gradeType.type);
 
   useEffect(() => {
-    console.log("Updating grade records on grade store...");
     updateGrades(studentRecord);
-    console.log("updated!");
   }, [updateGrades, studentRecord]);
 
   const handleEditGrades = (type, assessment_id, value) => {
@@ -86,6 +84,9 @@ export default function StudentGradesRow({ student, index }) {
           );
         });
       })}
+      <td className="p-4 text-center font-medium text-gray-900 min-w-[250px]">
+        100
+      </td>
     </tr>
   );
 }

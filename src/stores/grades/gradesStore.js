@@ -6,6 +6,23 @@ export const useGradesStore = create((set) => ({
   error: "",
   gradeTypes: [],
   grades: [],
+  weight: [
+    { gradeType: "Quizzes", percentage: 30 },
+    { gradeType: "Laboratory Activities", percentage: 40 },
+    { gradeType: "Midterm Exam", percentage: 30 },
+  ],
+
+  addWeight: (gradeType, weightValue) => {
+    set((state) => ({
+      weight: [
+        ...state.weight,
+        { gradeType: gradeType, percentage: Number(weightValue) },
+      ],
+    }));
+  },
+
+  // [gradeType]: weightValue
+  updateWeight: (updatedWeight) => set({ weight: updatedWeight }),
 
   fetchGradeTypes: async () => {
     set({ loading: true, error: "" });

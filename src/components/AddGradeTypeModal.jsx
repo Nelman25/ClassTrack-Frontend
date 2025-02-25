@@ -16,12 +16,14 @@ import { useState } from "react";
 
 export default function AddGradeTypeModal() {
   const addNewGradeType = useGradesStore((state) => state.addNewGradeType);
+  const addWeight = useGradesStore((state) => state.addWeight);
   const [error, setError] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [newGradeType, setNewGradeType] = useState({
     newGradeType: "",
     initialAssessment: "",
     maxPoints: 0,
+    weight: 0,
   });
 
   const handleNewGradeTypeChange = (e) => {
@@ -36,12 +38,26 @@ export default function AddGradeTypeModal() {
     setNewGradeType((prev) => ({ ...prev, maxPoints: e.target.value }));
   };
 
+  const handleWeightChange = (e) => {
+    setNewGradeType((prev) => ({ ...prev, weight: e.target.value }));
+  };
+
   const handleAddNewGradeType = () => {
-    if (!newGradeType.newGradeType || !newGradeType.initialAssessment) {
+    if (
+      !newGradeType.newGradeType ||
+      !newGradeType.initialAssessment ||
+      !newGradeType.maxPoints ||
+      !newGradeType.weight
+    ) {
       setError("Some fields are blank, please try again.");
       return;
-    } else if (newGradeType.maxPoints === 0) {
-      setError("Max point can't be 0, please try again.");
+    } else if (newGradeType.maxPoints <= 0) {
+      setError("Max points should not be less than or equal to 0.");
+      return;
+    } else if (newGradeType.weight <= 0) {
+      setError(
+        "Percentage should not be less than or equal to 0. Please try again."
+      );
       return;
     }
 
@@ -50,20 +66,22 @@ export default function AddGradeTypeModal() {
       newGradeType.initialAssessment,
       newGradeType.maxPoints
     );
+    addWeight(newGradeType.newGradeType, newGradeType.weight);
+
     setError("");
-    setNewGradeType({ newGradeType: "", initialAssessment: "", maxPoints: 0 });
+    setNewGradeType({
+      newGradeType: "",
+      initialAssessment: "",
+      maxPoints: 0,
+      weight: 0,
+    });
     setIsOpen(false);
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button
-          className="bg-blue-600/90 text-white hover:bg-blue-600/95 hover:scale-[102%] transition"
-          variant="default"
-        >
-          Add new grade type
-        </Button>
+        <Button variant="outline">Add new grade type</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -87,6 +105,7 @@ export default function AddGradeTypeModal() {
             />
           </div>
         </div>
+
         <div className="grid gap-2 py-2">
           <DialogTitle>Add Initial Assessments</DialogTitle>
           <DialogDescription>
@@ -120,9 +139,31 @@ export default function AddGradeTypeModal() {
             />
           </div>
         </div>
+
+        <DialogTitle>Assign weight to this grade type</DialogTitle>
+        <DialogDescription>
+          Enter the percentage value that this grade type contributes to the
+          overall grade.
+        </DialogDescription>
+        <div className="grid gap-2 py-2">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="percentage" className="text-right">
+              Percentage
+            </Label>
+            <Input
+              id="percentage"
+              placeholder="10%"
+              value={newGradeType.weight}
+              onChange={handleWeightChange}
+              className="col-span-3"
+            />
+          </div>
+        </div>
+
         {error && (
           <p className="text-red-500 text-center font-light">{error}</p>
         )}
+
         <DialogFooter>
           <Button type="submit" onClick={handleAddNewGradeType}>
             Add grade type
