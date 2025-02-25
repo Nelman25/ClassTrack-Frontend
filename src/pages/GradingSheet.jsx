@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useGradesStore } from "../stores/grades/gradesStore";
 import Loading from "../components/Loading";
 import AddGradeTypeModal from "@/components/AddGradeTypeModal";
-import { BG_COLORS, TEXT_COLORS } from "@/constants/constants";
 import AddAssessmentModal from "@/components/AddAssessmentModal";
+import StudentGradesRow from "@/components/StudentGradesRow";
 
 export default function GradingSheet() {
   const gradeData = useGradesStore((state) => state.grades);
@@ -12,14 +12,13 @@ export default function GradingSheet() {
   const fetchGrades = useGradesStore((state) => state.fetchGrades);
   const loading = useGradesStore((state) => state.loading);
   const error = useGradesStore((state) => state.error);
-  const arrayOfGradeTypesString = gradeTypes.map((gradeType) => gradeType.type);
-
-  console.log(gradeTypes);
 
   useEffect(() => {
     fetchGradeTypes();
     fetchGrades();
   }, [fetchGradeTypes, fetchGrades]);
+
+  console.log(gradeData);
 
   return (
     <div className="w-full px-8">
@@ -76,57 +75,11 @@ export default function GradingSheet() {
                   </thead>
                   <tbody>
                     {gradeData.map((student, index) => (
-                      <tr
+                      <StudentGradesRow
                         key={student.studentNumber}
-                        className={`border-b ${
-                          index % 2 === 0 ? "bg-white" : "bg-gray-50"
-                        }`}
-                      >
-                        <td className="p-4 font-medium text-gray-900 min-w-[250px]">
-                          {student.name}
-                        </td>
-                        <td className="p-4 text-gray-600 min-w-[180px]">
-                          {student.studentNumber}
-                        </td>
-                        {gradeTypes.map((gradeType) => {
-                          const studentGradeType = student.grades.find(
-                            (g) => g.type === gradeType.type
-                          );
-
-                          return gradeType.assessments.map((assessment) => {
-                            const score =
-                              studentGradeType?.scores.find(
-                                (s) => s.assessmentId === assessment.id
-                              )?.score ?? "";
-                            const bgColor =
-                              BG_COLORS[
-                                arrayOfGradeTypesString.indexOf(gradeType.type)
-                              ];
-                            const textColor =
-                              TEXT_COLORS[
-                                arrayOfGradeTypesString.indexOf(gradeType.type)
-                              ];
-
-                            return (
-                              <td
-                                key={`${student.studentNumber}-${assessment.id}`}
-                                className="text-center p-4  "
-                              >
-                                <div
-                                  className={`inline-block min-w-[4rem] ${bgColor} rounded`}
-                                >
-                                  <input
-                                    type="text"
-                                    value={score}
-                                    className={`w-full text-center font-medium py-1 px-2 bg-transparent ${textColor} outline-none focus:ring-2 focus:ring-blue-500 rounded`}
-                                    maxLength={5}
-                                  />
-                                </div>
-                              </td>
-                            );
-                          });
-                        })}
-                      </tr>
+                        student={student}
+                        index={index}
+                      />
                     ))}
                   </tbody>
                 </table>

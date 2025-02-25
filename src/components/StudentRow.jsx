@@ -1,5 +1,5 @@
-import { CiTrash } from "react-icons/ci";
 import { EditStudentInformationModal } from "./EditStudentInformationModal";
+import DeleteStudentModal from "./DeleteStudentModal";
 
 export default function StudentRow({ student, index }) {
   const { firstName, lastName, email, studentNumber, course, address } =
@@ -24,7 +24,7 @@ export default function StudentRow({ student, index }) {
           <EditStudentInformationModal studentItem={student} />
         </button>
         <button>
-          <CiTrash className="text-red-600 font-medium text-xl hover:text-red-700" />
+          <DeleteStudentModal student={student} />
         </button>
       </td>
     </tr>
