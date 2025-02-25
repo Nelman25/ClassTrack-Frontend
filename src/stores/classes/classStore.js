@@ -24,4 +24,15 @@ export const useClassStore = create((set) => ({
     set((state) => ({
       classes: [newClass, ...state.classes],
     })),
+
+  editClassInformation: (editedClass) =>
+    set((state) => ({
+      classes: state.classes.map((c) => {
+        if (c.id === editedClass.id) {
+          return editedClass;
+        }
+
+        return c;
+      }),
+    })),
 }));

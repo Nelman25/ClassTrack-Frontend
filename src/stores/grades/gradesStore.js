@@ -70,4 +70,15 @@ export const useGradesStore = create((set) => ({
         ),
       };
     }),
+
+  updateGrades: (updatedStudentRecord) =>
+    set((state) => ({
+      grades: state.grades.map((g) => {
+        if (g.studentNumber === updatedStudentRecord.studentNumber) {
+          return updatedStudentRecord;
+        }
+
+        return g;
+      }),
+    })),
 }));
