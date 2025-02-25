@@ -18,6 +18,8 @@ export default function DeleteStudentModal({ student }) {
     deleteStudent(student);
   };
 
+  console.log(student);
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -26,11 +28,12 @@ export default function DeleteStudentModal({ student }) {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Are you sure you want to delete {student.name} from the list?
+            Are you sure you want to delete {student.firstName} from the
+            masterlist?
           </AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete
-            {`${student.name}'s`} and remove their data from our servers.
+            {` ${student.firstName}'s`} and remove their data from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
