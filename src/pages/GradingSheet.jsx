@@ -4,6 +4,7 @@ import Loading from "../components/Loading";
 import AddGradeTypeModal from "@/components/AddGradeTypeModal";
 import AddAssessmentModal from "@/components/AddAssessmentModal";
 import StudentGradesRow from "@/components/StudentGradesRow";
+import SetGradingSystemModal from "@/components/SetGradingSystemModal";
 
 export default function GradingSheet() {
   const gradeData = useGradesStore((state) => state.grades);
@@ -18,8 +19,6 @@ export default function GradingSheet() {
     fetchGrades();
   }, [fetchGradeTypes, fetchGrades]);
 
-  console.log(gradeData);
-
   return (
     <div className="w-full px-8">
       <h2 className="text-2xl font-medium py-6">College Physics 1 - COM231</h2>
@@ -32,7 +31,10 @@ export default function GradingSheet() {
               {/* HEADER PART */}
               <div className="flex justify-between items-center border-b border-b-mistyGray px-4 py-4">
                 <span className="text-lg font-medium ">Class Records</span>
-                <AddGradeTypeModal />
+                <div className="flex gap-4">
+                  <AddGradeTypeModal />
+                  <SetGradingSystemModal />
+                </div>
               </div>
               {/* TABLE PART */}
               <div className="overflow-x-auto no-scrollbar">
