@@ -22,6 +22,13 @@ export const useStudentsStore = create((set) => ({
   addNewStudent: (newStudent) =>
     set((state) => ({ students: [newStudent, ...state.students] })),
 
+  deleteStudent: (student) =>
+    set((state) => ({
+      students: state.students.filter(
+        (s) => s.studentNumber !== student.studentNumber
+      ),
+    })),
+
   editStudentInformation: (editedStudentInfo) =>
     set((state) => ({
       students: state.students.map((s) => {
