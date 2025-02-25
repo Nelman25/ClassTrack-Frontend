@@ -45,6 +45,7 @@ export default function EditClassInformationModal({ classItem }) {
       !classInfo.schedule
     ) {
       setError("Some fields are blank, please try again.");
+      return;
     }
     const { subject, subjectCode, section, schedule } = classInfo;
     const editedClass = {

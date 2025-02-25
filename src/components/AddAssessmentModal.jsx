@@ -32,10 +32,12 @@ export default function AddAssessmentModal({ type }) {
   };
 
   const handleAddNewAssessment = () => {
-    if (!newAssessment.assessmentName || !newAssessment.maxScore) {
-      setError("Some fields are blank, please try again.");
-    } else if (newAssessment.maxScore <= 0) {
+    if (newAssessment.maxScore <= 0) {
       setError("Max score should not be less than or equal to 0.");
+      return;
+    } else if (!newAssessment.assessmentName || !newAssessment.maxScore) {
+      setError("Some fields are blank, please try again.");
+      return;
     }
 
     addNewAssessment(

@@ -48,6 +48,7 @@ export default function CreateClassModal() {
       !classInfo.schedule
     ) {
       setError("Some fields are blank, please try again.");
+      return;
     }
     const { subject, subjectCode, section, schedule } = classInfo;
     const newClass = {
