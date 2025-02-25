@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -12,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useGradesStore } from "@/stores/grades/gradesStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function SetGradingSystemModal() {
   const weight = useGradesStore((state) => state.weight);
@@ -20,6 +19,12 @@ export default function SetGradingSystemModal() {
   const [error, setError] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [gradingSystem, setGradingSystem] = useState(weight);
+
+  // NOTE: I feel like this is not the best solution for this. will fix
+  //      if i think of another solution.. :D
+  useEffect(() => {
+    setGradingSystem(weight);
+  }, [weight]);
 
   const handleChangeValue = (gradeType, value) => {
     setGradingSystem((prev) =>
@@ -68,6 +73,8 @@ export default function SetGradingSystemModal() {
           const selectedType = gradingSystem.find(
             (g) => g.gradeType === w.gradeType
           );
+
+          console.log(selectedType);
           return (
             <div
               key={w.gradeType}
@@ -80,7 +87,7 @@ export default function SetGradingSystemModal() {
                 type="number"
                 id={selectedType?.gradeType}
                 placeholder={w.percentage}
-                value={selectedType.percentage}
+                value={selectedType?.percentage}
                 className="col-span-3"
                 onChange={(e) => handleChangeValue(w.gradeType, e.target.value)}
               />

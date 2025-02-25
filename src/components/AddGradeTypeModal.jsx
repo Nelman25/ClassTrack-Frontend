@@ -43,11 +43,21 @@ export default function AddGradeTypeModal() {
   };
 
   const handleAddNewGradeType = () => {
-    if (!newGradeType.newGradeType || !newGradeType.initialAssessment) {
+    if (
+      !newGradeType.newGradeType ||
+      !newGradeType.initialAssessment ||
+      !newGradeType.maxPoints ||
+      !newGradeType.weight
+    ) {
       setError("Some fields are blank, please try again.");
       return;
-    } else if (newGradeType.maxPoints === 0) {
-      setError("Max point can't be 0, please try again.");
+    } else if (newGradeType.maxPoints <= 0) {
+      setError("Max points should not be less than or equal to 0.");
+      return;
+    } else if (newGradeType.weight <= 0) {
+      setError(
+        "Percentage should not be less than or equal to 0. Please try again."
+      );
       return;
     }
 
@@ -59,7 +69,12 @@ export default function AddGradeTypeModal() {
     addWeight(newGradeType.newGradeType, newGradeType.weight);
 
     setError("");
-    setNewGradeType({ newGradeType: "", initialAssessment: "", maxPoints: 0 });
+    setNewGradeType({
+      newGradeType: "",
+      initialAssessment: "",
+      maxPoints: 0,
+      weight: 0,
+    });
     setIsOpen(false);
   };
 
@@ -138,7 +153,7 @@ export default function AddGradeTypeModal() {
             <Input
               id="percentage"
               placeholder="10%"
-              value={0}
+              value={newGradeType.weight}
               onChange={handleWeightChange}
               className="col-span-3"
             />
