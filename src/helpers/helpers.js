@@ -1,54 +1,22 @@
-// export const calculateFinalGrade = (
-//   studentNumber,
-//   gradesData,
-//   gradeTypes,
-//   weight
-// ) => {
-//   const student = gradesData.find((s) => s.studentNumber === studentNumber);
+export const calculateFinalGrade = (studentGrades, gradeTypes, weights) => {
+  return (
+    studentGrades
+      .map((grade) => {
+        const typeRef = gradeTypes.find((gt) => gt.type === grade.type);
 
-//   // checks if the student is in the list
-//   if (!student) {
-//     return {
-//       error: `Student with student number: ${studentNumber} not found.`,
-//     };
-//   }
+        if (!typeRef) return 0;
 
-//   const categoryGrades = {};
-//   const categoryPercentage = {};
+        const gradeWeight =
+          weights.find((w) => w.gradeType === typeRef.type)?.percentage / 100;
+        const maxPossible =
+          typeRef.assessments.reduce((sum, a) => sum + a.maxPoints, 0) || 1;
+        const achieved = grade.scores.reduce(
+          (sum, score) => sum + score.score,
+          0
+        );
 
-//   student.grades.forEach((gradeCategory) => {
-//     const categoryType = gradeCategory.type; // kinukuha yung value ng type sa bawat object sa loob ng scores array
-//     const categoryInfo = gradeTypes.find((gt) => gt.type === categoryType); // kinukuha yung general info sa grade types para maging basehan
-
-//     if (!categoryInfo) return; // walang ganong category sa class record
-
-//     let totalScore = 0;
-//     let totalPossibleScore = 0;
-
-//     gradeCategory.scores.forEach((score) => {
-//       const assessment = categoryInfo.assessments.find(
-//         (a) => a.id === score.assessmentId
-//       );
-
-//       if (assessment) {
-//         totalScore += score.score;
-//         totalPossibleScore += assessment.maxScore;
-//       }
-
-      
-//     });
-//   });
-// };
-
-// export const calculateFinalGrade = (gradyTypes, grades, ) => {
-//   // PLANO: 
-//   // - i-total yung scores ng student sa bawat category
-//   // - kuhain yung max score para sa buong category (sum of max scores)
-//   // - i-divide yung total score / max score para sa buong category
-//   // - multiply yung sagot sa weight ng category 
-//   // - kuhain sum ng sagot sa each field
-//   // - display at final grade
-  
-//   // FUNCTIONS: 
-//   // - 
-// }
+        return (achieved / maxPossible) * gradeWeight;
+      })
+      .reduce((total, weightedGrade) => total + weightedGrade, 0) * 100
+  );
+};
