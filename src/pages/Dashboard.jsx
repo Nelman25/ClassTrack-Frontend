@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useClassStore } from "@/stores/classes/classStore";
 import { useEffect } from "react";
 
@@ -56,6 +57,15 @@ export default function Dashboard() {
 
         {error && <p>{error}</p>}
         {loading && <Loading className="mt-48" />}
+        {!loading && classes.length === 0 && (
+          <p className="text-center pt-32 text-2xl font-light">
+            No classes found. Click
+            <span className="text-blue-600 font-medium tracking-wide px-2">
+              'Create class'
+            </span>{" "}
+            to get started and manage your students
+          </p>
+        )}
         {!loading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
             {classes.map((classItem, index) => (

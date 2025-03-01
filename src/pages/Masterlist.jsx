@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useEffect } from "react";
 
 import StudentRow from "../components/StudentRow";
@@ -35,8 +36,17 @@ export default function Masterlist() {
           )}
 
           {loading && <Loading />}
+          {!loading && students.length === 0 && (
+            <p className="text-center pt-32 text-2xl font-light">
+              No student found. Click
+              <span className="text-blue-600 font-medium tracking-wide px-2">
+                'Add student'
+              </span>
+              to get started and manage your students
+            </p>
+          )}
 
-          {!loading && (
+          {!loading && students.length !== 0 && (
             <div className="max-h-[830px] overflow-x-auto no-scrollbar">
               <table className="w-full">
                 <thead className="bg-gray-50 sticky top-0">

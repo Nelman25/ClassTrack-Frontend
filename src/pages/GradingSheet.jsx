@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useEffect } from "react";
 import { useGradesStore } from "../stores/grades/gradesStore";
 import Loading from "../components/Loading";
@@ -26,8 +27,18 @@ export default function GradingSheet() {
         <div className="h-[770px] overflow-x-auto overflow-y-auto no-scrollbar rounded-md">
           {error && <h3>{error}</h3>}
           {loading && <Loading />}
-          {!loading && (
-            <div className="">
+          {!loading && gradeData.length === 0 && (
+            <p className="text-center pt-32 text-2xl font-light">
+              No student found. Navigate to the masterlist of this class and
+              click
+              <span className="text-blue-600 font-medium tracking-wide px-2">
+                'Add student'
+              </span>
+              to get started and manage your students
+            </p>
+          )}
+          {!loading && gradeData.length !== 0 && (
+            <div>
               {/* HEADER PART */}
               <div className="flex justify-between items-center border-b border-b-mistyGray px-4 py-4">
                 <span className="text-lg font-medium ">Class Records</span>
