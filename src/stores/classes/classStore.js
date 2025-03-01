@@ -14,7 +14,7 @@ export const useClassStore = create((set) => ({
       await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API delay
       const fetchedClasses = [...CLASSES];
 
-      set({ classes: fetchedClasses, loading: false });
+      set({ classes: [], loading: false });
     } catch (error) {
       set({ error: `Error fetching classes: ${error}`, loading: false });
     }

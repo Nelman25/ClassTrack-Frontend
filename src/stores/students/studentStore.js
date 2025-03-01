@@ -14,7 +14,7 @@ export const useStudentsStore = create((set) => ({
       await new Promise((resolve) => setTimeout(resolve, 2000)); // simulate API delay
       const fetchedStudents = [...STUDENTS];
 
-      set({ students: fetchedStudents, loading: false });
+      set({ students: [], loading: false });
     } catch (error) {
       set({ error: `Error fetching students: ${error}`, loading: false });
     }

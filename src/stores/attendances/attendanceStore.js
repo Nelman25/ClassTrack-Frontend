@@ -15,7 +15,7 @@ export const useAttendanceStore = create((set) => ({
       const fetchedDates = [...ATTENDANCE_DATES];
       const fetchedRecords = [...ATTENDANCE_RECORDS];
 
-      set({ loading: false, dates: fetchedDates, records: fetchedRecords });
+      set({ loading: false, dates: [], records: [] });
     } catch (error) {
       set({
         loading: false,
