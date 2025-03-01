@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { ATTENDANCE_DATES, ATTENDANCE_RECORDS } from "@/constants/dummyData";
+// import { ATTENDANCE_DATES, ATTENDANCE_RECORDS } from "@/constants/dummyData";
 
 export const useAttendanceStore = create((set) => ({
   loading: false,
@@ -12,8 +12,8 @@ export const useAttendanceStore = create((set) => ({
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API delay
-      const fetchedDates = [...ATTENDANCE_DATES];
-      const fetchedRecords = [...ATTENDANCE_RECORDS];
+      // const fetchedDates = [...ATTENDANCE_DATES];
+      // const fetchedRecords = [...ATTENDANCE_RECORDS];
 
       set({ loading: false, dates: [], records: [] });
     } catch (error) {

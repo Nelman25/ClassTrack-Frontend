@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { CLASSES } from "@/constants/dummyData";
+// import { CLASSES } from "@/constants/dummyData";
 
 export const useClassStore = create((set) => ({
   loading: false,
@@ -12,7 +12,7 @@ export const useClassStore = create((set) => ({
     try {
       // TODO: Replace this simulation with an actual API call to fetch classes
       await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API delay
-      const fetchedClasses = [...CLASSES];
+      // const fetchedClasses = [...CLASSES];
 
       set({ classes: [], loading: false });
     } catch (error) {

@@ -6,41 +6,46 @@ import { useGradesStore } from "@/stores/grades/gradesStore";
 
 export default function StudentGradesRow({ student, index }) {
   const [studentRecord, setStudentRecord] = useState(student);
-  const [finalGrade, setFinalGrade] = useState(0);
 
-  const updateGrades = useGradesStore((state) => state.updateGrades);
   const gradeTypes = useGradesStore((state) => state.gradeTypes);
   const weight = useGradesStore((state) => state.weight);
+  const updateGrades = useGradesStore((state) => state.updateGrades);
 
   const arrayOfGradeTypesString = useMemo(
     () => gradeTypes.map((gradeType) => gradeType.type),
     [gradeTypes]
   );
 
+  const finalGrade = useMemo(
+    () => calculateFinalGrade(studentRecord.grades, gradeTypes, weight),
+    [gradeTypes, studentRecord.grades, weight]
+  );
+
+  // update yung student prop kapag may changes
   useEffect(() => {
-    updateGrades(studentRecord);
-    const grade = calculateFinalGrade(student.grades, gradeTypes, weight);
-    setFinalGrade(grade);
-  }, [updateGrades, studentRecord, student, gradeTypes, weight]);
+    setStudentRecord(student);
+  }, [student]);
 
   const handleEditGrades = (type, assessment_id, value) => {
-    setStudentRecord((prev) => ({
-      ...prev,
-      grades: prev.grades.map((g) => {
+    const updatedRecord = {
+      ...studentRecord,
+      grades: studentRecord.grades.map((g) => {
         if (g.type === type) {
           return {
             ...g,
-            scores: g.scores.map((s) => {
-              if (s.assessmentId === assessment_id)
-                return { ...s, score: Number(value) };
-
-              return s;
-            }),
+            scores: g.scores.map((s) =>
+              s.assessmentId === assessment_id
+                ? { ...s, score: Number(value) }
+                : s
+            ),
           };
         }
         return g;
       }),
-    }));
+    };
+
+    setStudentRecord(updatedRecord);
+    updateGrades(updatedRecord);
   };
 
   return (
@@ -73,7 +78,7 @@ export default function StudentGradesRow({ student, index }) {
           return (
             <td
               key={`${studentRecord.studentNumber}-${assessment.id}`}
-              className="text-center p-4  "
+              className="text-center p-4"
             >
               <div className={`inline-block min-w-[4rem] ${bgColor} rounded`}>
                 <input

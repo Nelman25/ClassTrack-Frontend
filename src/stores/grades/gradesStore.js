@@ -1,16 +1,12 @@
 import { create } from "zustand";
-import { GRADE_TYPES, GRADES } from "@/constants/dummyData";
+import { GRADES } from "@/constants/dummyData";
 
 export const useGradesStore = create((set) => ({
   loading: false,
   error: "",
   gradeTypes: [],
   grades: [],
-  weight: [
-    // { gradeType: "Quizzes", percentage: 30 },
-    // { gradeType: "Laboratory Activities", percentage: 40 },
-    // { gradeType: "Midterm Exam", percentage: 30 },
-  ],
+  weight: [],
 
   addWeight: (gradeType, weightValue) => {
     set((state) => ({
@@ -28,7 +24,7 @@ export const useGradesStore = create((set) => ({
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      const fetchedGradeTypes = [...GRADE_TYPES];
+      // const fetchedGradeTypes = [...GRADE_TYPES];
 
       set({ gradeTypes: [], loading: false });
     } catch (error) {
@@ -59,7 +55,7 @@ export const useGradesStore = create((set) => ({
             {
               id: initialAssessment.split(" ").join("").toLowerCase(),
               name: initialAssessment,
-              maxPoints,
+              maxPoints: Number(maxPoints),
             },
           ],
         },
@@ -97,6 +93,28 @@ export const useGradesStore = create((set) => ({
               }
             : t
         ),
+
+        // append new assessment to each student grades record
+        grades: state.grades.map((student) => ({
+          ...student,
+          grades: student.grades.map((g) =>
+            g.type === type
+              ? {
+                  ...g,
+                  scores: [
+                    ...g.scores,
+                    {
+                      assessmentId: assessmentName
+                        .split(" ")
+                        .join("")
+                        .toLowerCase(),
+                      score: 0,
+                    },
+                  ],
+                }
+              : g
+          ),
+        })),
       };
     }),
 
