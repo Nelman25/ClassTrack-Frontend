@@ -7,9 +7,9 @@ export const useGradesStore = create((set) => ({
   gradeTypes: [],
   grades: [],
   weight: [
-    { gradeType: "Quizzes", percentage: 30 },
-    { gradeType: "Laboratory Activities", percentage: 40 },
-    { gradeType: "Midterm Exam", percentage: 30 },
+    // { gradeType: "Quizzes", percentage: 30 },
+    // { gradeType: "Laboratory Activities", percentage: 40 },
+    // { gradeType: "Midterm Exam", percentage: 30 },
   ],
 
   addWeight: (gradeType, weightValue) => {
@@ -21,7 +21,6 @@ export const useGradesStore = create((set) => ({
     }));
   },
 
-  // [gradeType]: weightValue
   updateWeight: (updatedWeight) => set({ weight: updatedWeight }),
 
   fetchGradeTypes: async () => {
@@ -31,7 +30,7 @@ export const useGradesStore = create((set) => ({
       await new Promise((resolve) => setTimeout(resolve, 2000));
       const fetchedGradeTypes = [...GRADE_TYPES];
 
-      set({ gradeTypes: fetchedGradeTypes, loading: false });
+      set({ gradeTypes: [], loading: false });
     } catch (error) {
       set({ error: `Error fetching grade types: ${error}`, loading: false });
     }
@@ -65,6 +64,19 @@ export const useGradesStore = create((set) => ({
           ],
         },
       ],
+
+      grades: state.grades.map((student) => ({
+        ...student,
+        grades: student.grades.concat({
+          type: newGradeType,
+          scores: [
+            {
+              assessmentId: initialAssessment.split(" ").join("").toLowerCase(),
+              score: 0,
+            },
+          ],
+        }),
+      })),
     })),
 
   addNewAssessment: (type, assessmentName, maxScore) =>
