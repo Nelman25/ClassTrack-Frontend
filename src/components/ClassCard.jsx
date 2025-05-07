@@ -4,10 +4,19 @@ import { CiClock2 } from "react-icons/ci";
 import { COLOR_STRIPS } from "@/constants/constants";
 import { useNavigate } from "react-router-dom";
 import EditClassInformationModal from "./EditClassInformationModal";
+import { useUserActivityStore } from "@/stores/userActivity/userActivityStore";
 
 export default function ClassCard({ classItem, index }) {
   const navigate = useNavigate();
+  const setSelectedClass = useUserActivityStore(
+    (state) => state.setSelectedClass
+  );
   const { subject, subjectCode, section, classSize, schedule } = classItem;
+
+  const handleSelectClass = () => {
+    navigate("/masterlist");
+    setSelectedClass(classItem);
+  };
 
   return (
     <div className="group relative bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
@@ -15,10 +24,10 @@ export default function ClassCard({ classItem, index }) {
         className={`absolute top-0 left-0 w-full h-1 ${COLOR_STRIPS[index]}`}
       />
       <div className="p-6">
-        <div className="cursor-pointer" onClick={() => navigate("/masterlist")}>
+        <div className="cursor-pointer" onClick={handleSelectClass}>
           <div className="flex justify-between items-start mb-4">
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 truncate">
+              <h3 className="text-lg font-semibold text-gray-800">
                 {subjectCode} - {subject}
               </h3>
               <span className="text-sm font-medium text-gray-500">

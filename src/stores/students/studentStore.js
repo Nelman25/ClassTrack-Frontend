@@ -1,5 +1,9 @@
 import { create } from "zustand";
-// import { STUDENTS } from "@/constants/dummyData";
+import { STUDENTS } from "@/constants/dummyData";
+import { useGradesStore } from "../grades/gradesStore";
+import { useAttendanceStore } from "../attendances/attendanceStore";
+import { useClassStore } from "../classes/classStore";
+import { useUserActivityStore } from "../userActivity/userActivityStore";
 
 export const useStudentsStore = create((set) => ({
   loading: false,
@@ -14,20 +18,39 @@ export const useStudentsStore = create((set) => ({
       await new Promise((resolve) => setTimeout(resolve, 2000)); // simulate API delay
       // const fetchedStudents = [...STUDENTS];
 
-      set({ students: [], loading: false });
+      set({ students: STUDENTS, loading: false });
     } catch (error) {
       set({ error: `Error fetching students: ${error}`, loading: false });
     }
   },
-  addNewStudent: (newStudent) =>
-    set((state) => ({ students: [newStudent, ...state.students] })),
 
-  deleteStudent: (student) =>
+  addNewStudent: (newStudent) => {
+    set((state) => ({ students: [newStudent, ...state.students] }));
+
+    const gradeStore = useGradesStore.getState();
+    const attendanceStore = useAttendanceStore.getState();
+    const classStore = useClassStore.getState();
+    const userActivity = useUserActivityStore.getState();
+    gradeStore.addNewStudent(newStudent);
+    attendanceStore.addNewStudent(newStudent);
+    classStore.incrementClassSize(userActivity.selectedClass.id);
+  },
+
+  deleteStudent: (student) => {
     set((state) => ({
       students: state.students.filter(
         (s) => s.studentNumber !== student.studentNumber
       ),
-    })),
+    }));
+
+    const gradeStore = useGradesStore.getState();
+    const attendanceStore = useAttendanceStore.getState();
+    const classStore = useClassStore.getState();
+    const userActivity = useUserActivityStore.getState();
+    gradeStore.deleteStudent(student);
+    attendanceStore.deleteStudent(student);
+    classStore.decrementClassSize(userActivity.selectedClass.id);
+  },
 
   editStudentInformation: (editedStudentInfo) =>
     set((state) => ({

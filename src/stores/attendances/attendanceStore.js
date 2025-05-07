@@ -4,8 +4,31 @@ import { ATTENDANCE_DATES, ATTENDANCE_RECORDS } from "@/constants/dummyData";
 export const useAttendanceStore = create((set) => ({
   loading: false,
   error: "",
-  dates: [],
+  dates: [""],
   records: [],
+
+  addNewStudent: (student) =>
+    set((state) => ({
+      records: [
+        ...state.records,
+        {
+          name: `${student.lastName}, ${student.firstName}`,
+          studentNumber: student.studentNumber,
+          records: state.dates.map((d) => ({
+            record_id: Math.random(),
+            date_id: d.date_id,
+            record_status: "",
+          })),
+        },
+      ],
+    })),
+
+  deleteStudent: (student) =>
+    set((state) => ({
+      records: state.records.filter(
+        (r) => r.studentNumber !== student.studentNumber
+      ),
+    })),
 
   fetchDatesAndRecords: async () => {
     set({ loading: true, error: "" }); // start loading and clear prev errors

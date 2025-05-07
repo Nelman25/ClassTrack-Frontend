@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useClassStore } from "@/stores/classes/classStore";
-import { useEffect } from "react";
 
 import ClassCard from "@/components/ClassCard";
 import Loading from "@/components/Loading";
@@ -10,11 +9,6 @@ export default function Dashboard() {
   const classes = useClassStore((state) => state.classes);
   const loading = useClassStore((state) => state.loading);
   const error = useClassStore((state) => state.error);
-  const fetchClasses = useClassStore((state) => state.fetchClasses);
-
-  useEffect(() => {
-    fetchClasses();
-  }, [fetchClasses]);
 
   return (
     <div className="min-h-screen bg-gray-100">

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { GRADES } from "@/constants/dummyData";
+import { GRADE_TYPES, GRADES } from "@/constants/dummyData";
 
 export const useGradesStore = create((set) => ({
   loading: false,
@@ -7,6 +7,31 @@ export const useGradesStore = create((set) => ({
   gradeTypes: [],
   grades: [],
   weight: [],
+
+  addNewStudent: (student) =>
+    set((state) => ({
+      grades: [
+        ...state.grades,
+        {
+          name: `${student.lastName}, ${student.firstName}`,
+          studentNumber: student.studentNumber,
+          grades: state.gradeTypes.map((gt) => ({
+            type: gt.type,
+            scores: gt.assessments.map((a) => ({
+              assessmentId: a.id,
+              score: 0,
+            })),
+          })),
+        },
+      ],
+    })),
+
+  deleteStudent: (student) =>
+    set((state) => ({
+      grades: state.grades.filter(
+        (g) => g.studentNumber !== student.studentNumber
+      ),
+    })),
 
   addWeight: (gradeType, weightValue) => {
     set((state) => ({
@@ -24,9 +49,8 @@ export const useGradesStore = create((set) => ({
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      // const fetchedGradeTypes = [...GRADE_TYPES];
 
-      set({ gradeTypes: [], loading: false });
+      set({ gradeTypes: GRADE_TYPES, loading: false });
     } catch (error) {
       set({ error: `Error fetching grade types: ${error}`, loading: false });
     }

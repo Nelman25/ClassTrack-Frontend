@@ -1,28 +1,43 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useEffect } from "react";
 
 import StudentRow from "../components/StudentRow";
 import Loading from "../components/Loading";
+import { CiClock1 } from "react-icons/ci";
+import { CiCalendar } from "react-icons/ci";
 
 import { useStudentsStore } from "../stores/students/studentStore";
 import { AddStudentModal } from "@/components/AddStudentModal";
+import { useUserActivityStore } from "@/stores/userActivity/userActivityStore";
 
 export default function Masterlist() {
   const students = useStudentsStore((state) => state.students);
-  const fetchStudents = useStudentsStore((state) => state.fetchStudents);
   const loading = useStudentsStore((state) => state.loading);
   const error = useStudentsStore((state) => state.error);
+  const selectedClass = useUserActivityStore((state) => state.selectedClass);
 
-  useEffect(() => {
-    fetchStudents();
-  }, [fetchStudents]);
+  const date = new Date();
+  const formattedDate = date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "2-digit",
+    year: "numeric",
+  });
+
+  console.log(students);
 
   return (
     <div className="w-full px-8">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-medium py-6">
-          College Physics 1 - COM231
-        </h2>
+        <div className="py-4">
+          <h1 className="text-2xl font-bold text-gray-800">
+            {selectedClass.subject} - {selectedClass.section}
+          </h1>
+          <div className="flex items-center gap-2 mt-2 text-gray-600">
+            <CiCalendar />
+            <span>{formattedDate}</span>
+            <CiClock1 />
+            <span>{selectedClass.schedule}</span>
+          </div>
+        </div>
 
         <AddStudentModal />
       </div>

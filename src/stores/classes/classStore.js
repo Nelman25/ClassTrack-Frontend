@@ -6,6 +6,20 @@ export const useClassStore = create((set) => ({
   classes: [],
   error: "",
 
+  incrementClassSize: (classId) =>
+    set((state) => ({
+      classes: state.classes.map((c) =>
+        c.id !== classId ? c : { ...c, classSize: c.classSize + 1 }
+      ),
+    })),
+
+  decrementClassSize: (classId) =>
+    set((state) => ({
+      classes: state.classes.map((c) =>
+        c.id !== classId ? c : { ...c, classSize: c.classSize - 1 }
+      ),
+    })),
+
   fetchClasses: async () => {
     set({ loading: true, error: "" }); // start loading and clear prev errors
 

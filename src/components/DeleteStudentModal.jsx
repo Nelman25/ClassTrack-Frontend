@@ -18,8 +18,6 @@ export default function DeleteStudentModal({ student }) {
     deleteStudent(student);
   };
 
-  console.log(student);
-
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
