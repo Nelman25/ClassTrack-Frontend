@@ -28,7 +28,7 @@ ClassTrack is a comprehensive class management system designed to streamline com
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/HoJoeNiel/ClassTrack-Frontend.git
+git clone https://github.com/Nelman25/ClassTrack-Frontend.git
 ```
 
 2. Navigate to the project directory:
@@ -63,27 +63,29 @@ npm run build
 
 ```
 src/
-├── components/     # Reusable UI components
-├── pages/          # Application views/routes
-├── store/          # State Management
-│   ├── classes/      # Classes related state management
-│   ├── students/     # Students related state management
-│   ├── grades/       # Grades related state management
-│   └── attendance/   # Attendance related state management
-└── services/       # API interaction logic
+├── assets/             # Static assets like images, fonts, etc.
+├── components/         # Reusable UI components
+├── constants/          # Constant values used throughout the app
+├── helpers/            # Utility/helper functions
+├── lib/                # External libraries or shared logic
+├── pages/              # Page-level components (views/routes)
+├── stores/             # State management using stores (e.g., Zustand, Redux)
+│   ├── attendances/      # Attendance-related state logic
+│   ├── classes/          # Class-related state logic
+│   ├── grades/           # Grades-related state logic
+│   ├── students/         # Student-related state logic
+│   └── userActivity/     # User activity tracking or logs
+├── App.jsx             # Root component
+├── firebase.js         # Firebase configuration and setup
+├── index.css           # Global CSS styles
+├── main.jsx            # Entry point for React
+
 
 ```
 
 ## Backend Integration
 
 The frontend interacts with a separate backend service. Authentication is handled through Firebase, with the backend validating tokens provided by the Firebase authentication system.
-
-## Current Development Status
-
-The project is currently in active development, with focus on:
-
-- Implementing core website structure
-- Integrating backend APIs as they become available
 
 ## Maintainer
 
